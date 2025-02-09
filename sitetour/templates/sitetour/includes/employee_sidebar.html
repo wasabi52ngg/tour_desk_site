@@ -1,0 +1,107 @@
+<div class="layout has-sidebar fixed-sidebar fixed-header">
+  <aside id="sidebar" class="sidebar break-point-sm">
+    <div class="sidebar-layout">
+      <div class="sidebar-header">
+        <div class="pro-sidebar-logo">
+          <h5>Панель управления</h5>
+        </div>
+      </div>
+      <div class="sidebar-content">
+        <nav class="menu open-current-submenu">
+          <ul>
+            <!-- Тур -->
+            <li class="menu-header"><span>Управление турами</span></li>
+            <li class="menu-item sub-menu">
+              <a href="{% url 'employee_panel_tour' %}" class="dropdown-toggle">
+                <span class="menu-title">Панель тура</span>
+                <span class="menu-suffix">
+                  <span class="arrow">▸</span>
+                </span>
+              </a>
+              <div class="sub-menu-list">
+                <ul>
+                  <li class="menu-item">
+                    <a href="{% url 'add_tour' %}">Создание тура</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'update_tour' 1 %}">Обновление тура</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'delete_tour' 1 %}">Удаление тура</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'home' %}">Продление тура</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Локация -->
+            <li class="menu-item sub-menu">
+              <a href="{% url 'employee_panel_location' %}" class="dropdown-toggle">
+                <span class="menu-title">Панель локации</span>
+                <span class="menu-suffix">
+                  <span class="arrow">▸</span>
+                </span>
+              </a>
+              <div class="sub-menu-list">
+                <ul>
+                  <li class="menu-item">
+                    <a href="{% url 'add_location' %}">Создание локации</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'update_location' 1 %}">Обновление локации</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'delete_location' %}">Удаление локации</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Гид -->
+            <li class="menu-item sub-menu">
+              <a href="{% url 'employee_panel_guide' %}" class="dropdown-toggle">
+                <span class="menu-title">Панель гида</span>
+                <span class="menu-suffix">
+                  <span class="arrow">▸</span>
+                </span>
+              </a>
+              <div class="sub-menu-list">
+                <ul>
+                  <li class="menu-item">
+                    <a href="{% url 'add_guide' %}">Создание гида</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'update_guide' 1 %}">Обновление гида</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'delete_guide' %}">Удаление гида</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Заказы -->
+            <li class="menu-header"><span>Управление заказами</span></li>
+            <li class="menu-item">
+              <a href="{% url 'list_bookings_wtpm' %}">
+                <span class="menu-title">Ожидающие подтверждения</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url 'list_bookings_paid' %}">
+                <span class="menu-title">Оплаченные заказы</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url 'bookings_archive' %}">
+                <span class="menu-title">Архив заказов</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </aside>
+</div>

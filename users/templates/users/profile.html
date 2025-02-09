@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<div class="profile-page">
+    <!-- Левая колонка с профилем -->
+    <div class="profile-sidebar">
+        <div class="profile-header">
+            <h1 class="profile-title">Профиль</h1>
+            <div class="profile-photo">
+                {% if user.photo %}
+                <img src="{{ user.photo.url }}" alt="Фото профиля" class="profile-avatar">
+                {% else %}
+                <img src="/static/img/default_user.png" alt="Фото профиля" class="profile-avatar">
+                {% endif %}
+            </div>
+        </div>
+        <!-- Форма редактирования профиля -->
+        <form method="post" class="profile-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+            {% for field in form %}
+            {% if field.label == "Фото" %}
+            <div class="form-field">
+                <label for="{{ form.photo.id_for_label }}" class="form-label">{{ form.photo.label }}</label>
+                <div class="clearable-file-input">
+                    {{ form.photo }}
+                </div>
+                <div class="form-error">{{ form.photo.errors }}</div>
+            </div>
+            {% else %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                <div class="form-error">{{ field.errors }}</div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <button type="submit" class="profile-save-button">Сохранить изменения</button>
+        </form>
+        <a href="{% url 'users:password-change' %}" class="password-change-link">Сменить пароль</a>
+    </div>
+
+    <!-- Правая колонка с архивом заказов -->
+    <div class="orders-section">
+        <h2 class="orders-title">Архив выполненных заказов</h2>
+        {% if orders %}
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Тур</th>
+                    <th>Число билетов</th>
+                    <th>Цена</th>
+                    <th>Дата заказа</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr class="order-item">
+                    <td>{{ order.tour_id }}</td>
+                    <td>{{ order.participants }}</td>
+                    <td>{{ order.total_price }}</td>
+                    <td>{{ order.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="no-orders">
+            <h3>Заказы не найдены</h3>
+            <p>У вас пока нет завершенных заказов.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

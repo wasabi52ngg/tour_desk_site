@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<div class="container">
+    <h1>Регистрация</h1>
+    <form action="{% url 'users:register' %}" method="post" enctype="multipart/form-data" class="auth-form" autocomplete="on">
+        {% csrf_token %}
+        <!-- Общие ошибки формы -->
+        {% if form.non_field_errors %}
+        <div class="form-error-box">
+            <i class='bx bx-error-circle'></i>
+            <ul>
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Поля формы -->
+        {% for field in form %}
+        <div class="input-box">
+            {% if field.label == "Телефон" %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <label for="{{ field.id_for_label }}">Формат: "+#-###-###-##-##"</label>
+            {% else %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% endif %}
+            {{ field }}
+            <i class='bx bxs-user'></i>
+            <!-- Ошибки конкретного поля -->
+            {% if field.errors %}
+            <div class="field-errors">
+                <i class='bx bx-error'></i>
+                <ul>
+                    {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn">Зарегистрироваться</button>
+        <p>или зарегистрируйтесь с помощью социальных платформ</p>
+        <div class="social-icons">
+            <a href="#" title="Войти через GitHub" class="icon github"></a>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

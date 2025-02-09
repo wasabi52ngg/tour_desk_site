@@ -1,0 +1,313 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url('/static/img/back-white-min.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Poppins", sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.profile-page {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Левая колонка - Профиль */
+.profile-sidebar {
+    width: 40%;
+    background: #0c1e35; /* Темно-синий фон */
+    color: #7494ec; /* Голубой текст */
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #7494ec; /* Голубой заголовок */
+}
+
+.profile-photo .profile-avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #7494ec; /* Голубая рамка */
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.photo-actions {
+    margin-top: 10px;
+}
+
+.photo-action {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px;
+    background: #7494ec; /* Голубая кнопка */
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.photo-action:hover {
+    background: #5a7ddc; /* Темнее при наведении */
+}
+
+.photo-action.delete {
+    background: #d9534f; /* Красная кнопка для удаления */
+}
+
+.photo-action.delete:hover {
+    background: #c9302c; /* Темнее при наведении */
+}
+
+.profile-form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.form-field {
+    margin-bottom: 20px; /* Увеличил отступ между полями */
+}
+
+.form-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #7494ec; /* Голубой текст */
+}
+
+.profile-form input,
+.profile-form textarea {
+    width: 100%;
+    padding: 14px; /* Увеличил отступы внутри полей */
+    background: rgba(255, 255, 255, 0.9); /* Сделал фон чуть ярче */
+    border: 1px solid #ccc; /* Более контрастная граница */
+    border-radius: 8px;
+    font-size: 16px; /* Увеличил размер шрифта */
+    color: #222; /* Более темный цвет текста */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-form input::placeholder,
+.profile-form textarea::placeholder {
+    color: #888; /* Цвет плейсхолдера */
+    font-size: 14px; /* Размер шрифта плейсхолдера */
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+    border-color: #7494ec; /* Цвет границы при фокусе */
+    box-shadow: 0 0 10px rgba(116, 148, 236, 0.6); /* Увеличил тень */
+    outline: none;
+}
+
+
+
+.profile-save-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #7494ec, #5a7ddc); /* Голубой градиент */
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profile-save-button:hover {
+    background: linear-gradient(135deg, #5a7ddc, #7494ec);
+}
+
+.password-change-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #7494ec;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.password-change-link:hover {
+    color: #5a7ddc;
+}
+
+/* Правая колонка - Архив заказов */
+.orders-section {
+    width: 60%;
+    padding: 30px;
+    background: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.orders-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0c1e35;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #333;
+}
+
+.orders-table thead th {
+    background: #7494ec;
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.orders-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-item:hover {
+    background: #f4f4f4;
+}
+
+.status {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.status.pending {
+    background: #7494ec;
+    color: #fff;
+}
+
+.status.completed {
+    background: #4caf50;
+    color: #fff;
+}
+
+.status.canceled {
+    background: #d9534f;
+    color: #fff;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    color: #555;
+    font-size: 16px;
+}
+
+
+
+
+/* Хедер с логотипом, меню и авторизацией */
+.header {
+    background: #0c1e35;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Логотип слева */
+.logo {
+    width: 100px;
+    height: 60px;
+    background: url('/static/img/logo.png') no-repeat center;
+    background-size: contain;
+}
+
+/* Меню посередине */
+ul.mainmenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    color: #ADD8E6;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+ul.mainmenu li {
+    margin: 0 40px;
+}
+
+ul.mainmenu li a {
+    color: #ADD8E6;
+    text-decoration: none;
+}
+
+ul.mainmenu li a:hover {
+    color: #FDA83D;
+}
+
+ul.mainmenu li.selected a {
+    color: #FFFFFF;
+    background: linear-gradient(90deg, #007bff, #007bff);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Блок для авторизации справа */
+.auth-links {
+    display: flex;
+    align-items: center;
+    color: #fdc073;
+    font-size: 20px;
+}
+
+.auth-links a {
+    color: #fdc073;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.auth-links a:hover {
+    color: #FDA83D;
+}
+
+.clear {
+    clear: both;
+}
+

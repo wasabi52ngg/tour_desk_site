@@ -1,0 +1,79 @@
+{% load static %}
+{% load sitetour_tags %}
+{% load sitetour_filters %}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    {% if static_root %}
+    <link type='text/css' rel="stylesheet" href="{% static static_root %}">
+    {% else %}
+        <link type='text/css' rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endif %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    {% if static_js_root %}
+    {% for js_root in static_js_root %}
+    <script src="{% static js_root %}"></script>
+    {% endfor %}
+    {% endif %}
+    <script src="{% static 'sitetour/js/tour_choice.js' %}"></script>
+
+</head>
+<body>
+
+   {% block mainmenu %}
+    <div class="header">
+        <!-- Логотип слева -->
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <div class="logo"></div>
+            </a>
+        </div>
+
+        <!-- Меню посередине -->
+        <ul id="mainmenu" class="mainmenu">
+            {% get_menu as menu%}
+            {% for m in menu %}
+
+            {% if user|in_group:"employees" %}
+            <li class="{% if selected == m.url_name %}selected{% endif %}">
+                <a href="{% url m.url_name %}">{{ m.title }}</a>
+            </li>
+
+            {% else %}
+            {% if m.title != 'Панель сотрудника' %}
+            <li class="{% if selected == m.url_name %}selected{% endif %}">
+                <a href="{% url m.url_name %}">{{ m.title }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+
+            {% endfor %}
+        </ul>
+
+        <!-- Поля для входа и регистрации справа -->
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+                <a href="{% url 'users:profile' %}">Профиль</a>&nbsp;&nbsp;|<a href="{% url 'users:logout' %}">Выйти</a>
+            {% else %}
+                <a href="{% url 'users:login' %}">Вход  </a><a>  |</a>
+                <a href="{% url 'users:register' %}">Регистрация</a>
+            {% endif %}
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock mainmenu %}
+
+
+    <div class="main-part">
+    {% block mainpart %}
+    {% endblock %}
+    </div>
+
+
+</body>
+</html>

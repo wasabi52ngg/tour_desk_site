@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mainpart %}
+<div class="booking-container">
+    <div class="info-message">
+        <h2>Выберите Тур и Число участников</h2>
+        <p>Пожалуйста, выберите тур и укажите количество участников, чтобы продолжить.</p>
+    </div>
+    <form action="" method="post" id="bookingForm" class="booking-form">
+        {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for field in form %}
+        <div class="form-group">
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.name == 'tour_id' %}
+                <span class="free-seats" id="freeSeats">Свободных мест: {% if free_seats is not None %}{{ free_seats }}{% else %}0{% endif %}</span>
+            {% endif %}
+        </div>
+        <div class="field-errors">{{ field.errors }}</div>
+        {% endfor %}
+        <div class="form-group">
+            <label class="form-label">Итоговая цена:</label>
+            <span id="totalPrice" class="total-price">0</span> руб.
+        </div>
+        <button type="submit" class="submit-button">Отправить</button>
+    </form>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+<!-- Передаем URL-адреса в JavaScript -->
+<script>
+    var urls = {
+        getFreeSeatsUrl: "{% url 'get_free_seats' %}",
+        getTourPriceUrl: "{% url 'get_tour_price' %}"
+    };
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'sitetour/js/booking.js' %}"></script>
+{% endblock %}

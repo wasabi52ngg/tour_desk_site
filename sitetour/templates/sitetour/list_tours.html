@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load sitetour_filters %}
+{% block mainpart %}
+<div class="tour-list-container">
+    <h1 class="page-title">Список туров</h1>
+    <!-- Контейнер для фильтров -->
+    <div class="list_tours-filters-container">
+        <!-- Кнопка для открытия модального окна фильтров -->
+        <button class="list_tours-filter-toggle" onclick="toggleFilterModal()">Все фильтры</button>
+        <!-- Основные фильтры -->
+        <div class="list_tours-main-filters">
+            <div class="list_tours-filter-circle" onclick="showDropdown('price')">
+                Цена
+                <div class="list_tours-dropdown-content" id="priceDropdown">
+                    <label><input type="checkbox" name="price" value="False" onchange="updateFilterForm()"> Любая</label>
+                    <label><input type="checkbox" name="price" value="1" onchange="updateFilterForm()"> Подешевле: меньше 1000</label>
+                    <label><input type="checkbox" name="price" value="2" onchange="updateFilterForm()"> Средние: от 1000 до 5000</label>
+                    <label><input type="checkbox" name="price" value="3" onchange="updateFilterForm()"> Подороже: больше 5000</label>
+                </div>
+            </div>
+            <div class="list_tours-filter-circle" onclick="showDropdown('category')">
+                Категория
+                <div class="list_tours-dropdown-content" id="categoryDropdown">
+                    <label><input type="checkbox" name="category" value="False" onchange="updateFilterForm()"> Любая</label>
+                    {% for category in filter_form.fields.category.queryset %}
+                    <label><input type="checkbox" name="category" value="{{ category.pk }}" onchange="updateFilterForm()"> {{ category.name }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="list_tours-filter-circle" onclick="showDropdown('duration')">
+                Длительность
+                <div class="list_tours-dropdown-content" id="durationDropdown">
+                    <label><input type="checkbox" name="duration" value="False" onchange="updateFilterForm()"> Любая</label>
+                    <label><input type="checkbox" name="duration" value="1" onchange="updateFilterForm()"> Побыстрее: меньше 3ч</label>
+                    <label><input type="checkbox" name="duration" value="2" onchange="updateFilterForm()"> Средние: от 3ч до 6ч</label>
+                    <label><input type="checkbox" name="duration" value="3" onchange="updateFilterForm()"> Подольше: больше 6ч</label>
+                </div>
+            </div>
+            <!-- Добавьте другие фильтры по аналогии -->
+        </div>
+    </div>
+        <!-- Модальное окно фильтров -->
+    <div class="list_tours-filter-modal" id="filterModal">
+        <div class="list_tours-filter-modal-content">
+            <span class="list_tours-close-modal" onclick="toggleFilterModal()">&times;</span>
+            <form method="get" action="{% url 'tours' %}" id="filterForm">
+                <!-- Обработка ошибок формы -->
+                <div class="form-error">{{ filter_form.non_field_errors }}</div>
+                <!-- Перебор полей формы -->
+                {% for field in filter_form %}
+                <p>
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    <div>
+                        {{ field.errors }}
+                    </div>
+                </p>
+                {% endfor %}
+                <p>
+                    <button type="submit">Отправить</button>
+                </p>
+            </form>
+        </div>
+    </div>
+    <!-- Карточки туров -->
+    <div class="list_tours-tours-grid">
+        {% if tours %}
+        {% for tour in tours %}
+        <div class="list_tours-tour-card">
+            <div class="list_tours-tour-image">
+                {% if tour.location_id.photos.all %}
+                <img src="{{ tour.location_id.photos.first.photo.url }}" alt="Изображение локации" class="list_tours-main-image">
+                {% else %}
+                <img src="/static/img/default_loc.jpg" alt="Изображение локации по умолчанию" class="list_tours-main-image">
+                {% endif %}
+            </div>
+            <div class="tour-rating-top">
+                    <span class="rating-value">
+                        <a href="{% url 'reviews' %}?tours={{ tour.pk }}">{{ rating_for_tours|get_item:tour.pk }}</a>
+                        <span class="rating-star">&#9733;</span>
+                    </span>
+            </div>
+            <div class="list_tours-tour-details">
+                <h2 class="list_tours-tour-title">{{ tour.title }}</h2>
+                <p class="list_tours-tour-description">{{ tour.description|truncatechars:200 }}</p>
+                <table class="list_tours-tour-info-table">
+                    <tbody>
+                        <tr>
+                            <td>Категория</td>
+                            <td>{{ tour.category.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Длительность</td>
+                            <td>{{ tour.duration }} часов</td>
+                        </tr>
+                        <tr>
+                            <td>Цена</td>
+                            <td>{{ tour.price }} руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Максимальное количество участников</td>
+                            <td>{{ tour.max_participants }}</td>
+                        </tr>
+                        <tr>
+                            <td>Гид</td>
+                            <td><a href="{{ tour.guide_id.get_absolute_url }}">{{ tour.guide_id.name }}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Локация</td>
+                            <td><a href="{{ tour.location_id.get_absolute_url }}">{{ tour.location_id.name }}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Дата и время начала</td>
+                            <td>{{ tour.start_datetime|date:"d.m.Y H:i" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Дата и время окончания</td>
+                            <td>{{ tour.end_datetime|date:"d.m.Y H:i" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="list_tours-tour-actions">
+                    <a href="{{ tour.get_absolute_url }}">
+                        <button class="list_tours-more-info-button">Детальная информация о туре</button>
+                    </a>
+                    {% if tour.id in notavailable_tours %}
+                    <p class="list_tours-tour-status">СВОБОДНЫХ МЕСТ НА ТУР БОЛЬШЕ НЕТ!</p>
+                    {% else %}
+                    <a href="{% url 'add_booking' %}?tour_id={{ tour.id }}">
+                        <button class="list_tours-buy-now-button">Купить тур</button>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="list_tours-no-tours">Туры не найдены.</p>
+        {% endif %}
+    </div>
+    {% include 'sitetour/includes/navigation_paginator.html' %}
+</div>
+<script>
+function toggleFilterModal() {
+    var modal = document.getElementById("filterModal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+}
+function showDropdown(filterName) {
+    var dropdowns = document.getElementsByClassName("list_tours-dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].style.display = "none";
+    }
+    var dropdown = document.getElementById(filterName + "Dropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+function updateFilterForm() {
+    // Получаем выбранные значения для цены
+    var priceInputs = document.querySelectorAll('#priceDropdown input[name="price"]:checked');
+    var selectedPrices = Array.from(priceInputs).map(input => input.value).join(',');
+    document.getElementById('hiddenPrice').value = selectedPrices;
+    // Получаем выбранные значения для категории
+    var categoryInputs = document.querySelectorAll('#categoryDropdown input[name="category"]:checked');
+    var selectedCategories = Array.from(categoryInputs).map(input => input.value).join(',');
+    document.getElementById('hiddenCategory').value = selectedCategories;
+    // Получаем выбранные значения для длительности
+    var durationInputs = document.querySelectorAll('#durationDropdown input[name="duration"]:checked');
+    var selectedDurations = Array.from(durationInputs).map(input => input.value).join(',');
+    document.getElementById('hiddenDuration').value = selectedDurations;
+    // Отправляем форму
+    document.getElementById('hiddenFilterForm').submit();
+}
+</script>
+<!-- Скрытые поля для основных фильтров -->
+<form method="get" action="{% url 'tours' %}" id="hiddenFilterForm" style="display: none;">
+    <input type="hidden" name="price" id="hiddenPrice">
+    <input type="hidden" name="category" id="hiddenCategory">
+    <input type="hidden" name="duration" id="hiddenDuration">
+</form>
+{% endblock %}

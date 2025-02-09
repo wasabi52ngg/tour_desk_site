@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<div class="container orders-container">
+    <h2 class="orders-title">Ваши заказы</h2>
+    <ul class="orders-list">
+        {% if bookings %}
+            {% for booking in bookings %}
+            <li class="order-item">
+                <div class="order-info">
+                    <div class="tour-details">
+                        <span class="tour-id"><strong>Тур:</strong> {{ booking.tour_id }}</span>
+                        <span class="participants"><strong>Участников:</strong> {{ booking.participants }}</span>
+                        <span class="total-price"><strong>Итоговая цена:</strong> {{ booking.total_price }} руб.</span>
+                    </div>
+                    <div class="order-meta">
+                        <span class="status {{ booking.status|lower }}"><strong>Статус:</strong> {{ booking.get_status_display }}</span>
+                        <span class="created-at"><strong>Дата создания:</strong> {{ booking.created_at }}</span>
+                    </div>
+                </div>
+                 <div class="order-actions">
+                     {% if booking.status == 'WTPM' %}
+                    <form action="{% url 'cancel_booking_user' booking.pk %}" method="post" class="cancel-form">
+                        {% csrf_token %}
+                        <button type="submit" class="cancel-button">Отменить</button>
+                    </form>
+                     {% endif %}
+                     {% if booking.status == 'CANC' %}
+                     <form action="{% url 'delete_booking' booking.pk %}" method="post" class="delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">Удалить</button>
+                    </form>
+                     {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        {% else %}
+        <div class="no-orders">
+            <h1>Ни одного заказа не найдено</h1>
+            <p>Попробуйте забронировать тур, и ваши заказы появятся здесь.</p>
+        </div>
+        {% endif %}
+    </ul>
+    {% include 'sitetour/includes/navigation_paginator.html' %}
+</div>
+{% endblock %}

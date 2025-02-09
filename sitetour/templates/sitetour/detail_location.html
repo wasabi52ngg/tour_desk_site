@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<div class="location-container">
+    <h2 class="location-title">{{ location.name }}</h2>
+    <div class="location-images">
+        {% if location.photos.all %}
+            <div class="location-photo-slider">
+                <button class="location-slider-prev" onclick="prevLocationPhoto()">&#10094;</button>
+                <div class="location-photo-wrapper">
+                    {% for photo in location.photos.all %}
+                        <div class="location-photo">
+                            <img src="{{ photo.photo.url }}" alt="{{ location.name }}" class="location-main-image">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="location-slider-next" onclick="nextLocationPhoto()">&#10095;</button>
+            </div>
+        {% else %}
+            <p class="location-no-photo">Фото отсутствует</p>
+        {% endif %}
+    </div>
+    <div class="location-info">
+        <div class="location-description">
+            <h3 class="location-subtitle">Описание локации</h3>
+            <p>{{ location.description|default:"Описание отсутствует" }}</p>
+        </div>
+        <div class="location-map">
+            <h3 class="location-subtitle">Место на карте</h3>
+            <div id="location-map" class="location-map-container"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=16582746-7435-431c-9e99-e83746c03d05" type="text/javascript"></script>
+<script>
+    ymaps.ready(init);
+    function init() {
+        var myMap = new ymaps.Map("location-map", {
+            center: [{{ location.latitude }}, {{ location.longitude }}],
+            zoom: 12
+        });
+
+        var myPlacemark = new ymaps.Placemark([{{ location.latitude }}, {{ location.longitude }}], {
+            hintContent: '{{ location.name }}',
+            balloonContent: '{{ location.name }}'
+        });
+
+        myMap.geoObjects.add(myPlacemark);
+    }
+
+    let currentLocationPhotoIndex = 0;
+
+    function showLocationPhoto(index) {
+        const photos = document.querySelectorAll('.location-photo');
+        if (index < 0) {
+            currentLocationPhotoIndex = photos.length - 1;
+        } else if (index >= photos.length) {
+            currentLocationPhotoIndex = 0;
+        } else {
+            currentLocationPhotoIndex = index;
+        }
+
+        photos.forEach((photo, i) => {
+            if (i === currentLocationPhotoIndex) {
+                photo.style.display = 'block';
+            } else {
+                photo.style.display = 'none';
+            }
+        });
+    }
+
+    function nextLocationPhoto() {
+        showLocationPhoto(currentLocationPhotoIndex + 1);
+    }
+
+    function prevLocationPhoto() {
+        showLocationPhoto(currentLocationPhotoIndex - 1);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showLocationPhoto(currentLocationPhotoIndex);
+    });
+</script>
+{% endblock %}

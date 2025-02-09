@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<div class="detail-tour-container">
+    <h2 class="detail-tour-title">{{ tour.title }}</h2>
+    <div class="detail-tour-images">
+        {% if tour.location_id.photos.all %}
+            <div class="detail-tour-photo-slider">
+                <button class="detail-tour-slider-prev" onclick="prevPhoto()">&#10094;</button>
+                <div class="detail-tour-photo-wrapper">
+                    {% for photo in tour.location_id.photos.all %}
+                        <div class="detail-tour-photo">
+                            <img src="{{ photo.photo.url }}" alt="{{ tour.location_id.name }}" class="detail-tour-main-image">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="detail-tour-slider-next" onclick="nextPhoto()">&#10095;</button>
+            </div>
+        {% else %}
+            <p class="detail-tour-no-photo">Фото отсутствует</p>
+        {% endif %}
+    </div>
+    <div class="detail-tour-info">
+        <div class="detail-tour-description">
+            <h3 class="detail-tour-subtitle">Описание тура</h3>
+            <p>{{ tour.description|default:"Описание отсутствует" }}</p>
+        </div>
+        <div class="detail-tour-details">
+            <h3 class="detail-tour-subtitle">Информация о туре</h3>
+            <table class="detail-tour-info-table">
+                <tbody>
+                    <tr>
+                        <td>Категория</td>
+                        <td>{{ tour.category.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Длительность</td>
+                        <td>{{ tour.duration }} часов</td>
+                    </tr>
+                    <tr>
+                        <td>Цена</td>
+                        <td>{{ tour.price }} руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Максимальное количество участников</td>
+                        <td>{{ tour.max_participants }}</td>
+                    </tr>
+                    <tr>
+                        <td>Гид</td>
+                        <td><a href="{{ tour.guide_id.get_absolute_url }}">{{ tour.guide_id.name }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Локация</td>
+                        <td><a href="{{ tour.location_id.get_absolute_url }}">{{ tour.location_id.name }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Дата и время начала</td>
+                        <td>{{ tour.start_datetime|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                    <tr>
+                        <td>Дата и время окончания</td>
+                        <td>{{ tour.end_datetime|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="detail-tour-actions">
+            {% if tour.id in notavailable_tours %}
+                <p class="detail-tour-status">СВОБОДНЫХ МЕСТ НА ТУР БОЛЬШЕ НЕТ!</p>
+            {% else %}
+                <a href="{% url 'add_booking' %}?tour_id={{ tour.id }}">
+                    <button class="detail-tour-buy-now-button">Купить тур</button>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let currentPhotoIndex = 0;
+
+    function showPhoto(index) {
+        const photos = document.querySelectorAll('.detail-tour-photo');
+        if (index < 0) {
+            currentPhotoIndex = photos.length - 1;
+        } else if (index >= photos.length) {
+            currentPhotoIndex = 0;
+        } else {
+            currentPhotoIndex = index;
+        }
+
+        photos.forEach((photo, i) => {
+            if (i === currentPhotoIndex) {
+                photo.style.display = 'block';
+            } else {
+                photo.style.display = 'none';
+            }
+        });
+    }
+
+    function nextPhoto() {
+        showPhoto(currentPhotoIndex + 1);
+    }
+
+    function prevPhoto() {
+        showPhoto(currentPhotoIndex - 1);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showPhoto(currentPhotoIndex);
+    });
+</script>
+{% endblock %}

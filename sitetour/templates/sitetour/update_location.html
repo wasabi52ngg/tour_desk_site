@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<h1> Изменение локации </h1>
+{% include 'sitetour/includes/employee_sidebar.html' %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="form-error">{{ form.non_field_errors }}</div>
+
+    <p><label class="form-label" for="{{ form.location_choice.id_for_label }}">{{ form.location_choice.label }}</label>{{ form.location_choice }}</p>
+    <div>
+        {{ form.location_choice.errors }}
+    </div>
+
+    {% for field in form.visible_fields %}
+        {% if field.name != 'location_choice' %}
+            <p><label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}</p>
+            <div>
+                {{ field.errors }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <p><button type="submit">Отправить</button></p>
+</form>
+{% endblock %}

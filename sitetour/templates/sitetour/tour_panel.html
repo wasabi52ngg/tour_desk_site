@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+{% include 'sitetour/includes/employee_sidebar.html' %}
+
+<div class="employee-sidebar sidebar">
+    <ul class="button-list">
+        <li><a href="{% url 'add_tour' %}" class="button">Создание тура</a></li>
+        <li><a href="{% url 'add_tour' %}" class="button">Обновление данных о туре</a></li>
+        <li><a href="{% url 'add_tour' %}" class="button" onclick="return confirm('Вы уверены, что хотите удалить тур?');">Удаление тура</a></li>
+    </ul>
+</div>
+{% endblock %}

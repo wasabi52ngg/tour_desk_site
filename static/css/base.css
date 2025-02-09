@@ -1,0 +1,1866 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Растягивание фонового изображения на всю страницу */
+body {
+    background: url('/static/img/back-white-min.jpg') no-repeat center center fixed;
+    background-size: cover; /* Растягиваем фон по всей странице */
+    color: #444;
+    font-family: Arial, sans-serif;
+}
+
+/* Хедер с логотипом, меню и авторизацией */
+.header {
+    background: #0c1e35;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Логотип слева */
+.logo {
+    width: 100px;
+    height: 60px;
+    background: url('/static/img/logo.png') no-repeat center;
+    background-size: contain;
+}
+
+/* Меню посередине */
+ul.mainmenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    color: #ADD8E6;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+ul.mainmenu li {
+    margin: 0 40px;
+}
+
+ul.mainmenu li a {
+    color: #ADD8E6;
+    text-decoration: none;
+}
+
+ul.mainmenu li a:hover {
+    color: #FDA83D;
+}
+
+ul.mainmenu li.selected a {
+    color: #FFFFFF;
+    background: linear-gradient(90deg, #007bff, #007bff);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Блок для авторизации справа */
+.auth-links {
+    display: flex;
+    align-items: center;
+    color: #fdc073;
+    font-size: 20px;
+}
+
+.auth-links a {
+    color: #fdc073;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.auth-links a:hover {
+    color: #FDA83D;
+}
+
+.clear {
+    clear: both;
+}
+
+/* Стили для Hero секции */
+/* Стили для Hero секции */
+.hero {
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/img/back.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px; /* Отступы для удобства просмотра на мобильных устройствах */
+}
+
+.hero-content {
+    max-width: 800px; /* Ограничение ширины для удобства чтения */
+    color: #ffffff;
+    animation: fadeIn 1.5s ease-in-out; /* Плавное появление текста */
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8); /* Глубокая тень для заголовка */
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Темная тень для текста */
+}
+
+.hero-content p:last-child {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 20px;
+    color: #ffd700; /* Выделение для графика работы */
+}
+
+/* Анимация для плавного появления */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.cta-button {
+    padding: 15px 30px;
+    background-color: #4caf50;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+
+
+/* Основной контейнер списка туров */
+.tour-list-container {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.page-title {
+    font-size: 2rem;
+    color: #444;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1.5s ease-out;
+}
+
+.tour-detail-content {
+    display: flex; /* Используем flexbox для размещения изображений и информации */
+    justify-content: space-between; /* Размещаем содержимое с равным отступом */
+    align-items: flex-start; /* Выравниваем элементы по верхнему краю */
+    padding: 20px; /* Внутренние отступы */
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Рамка вокруг детали тура */
+    background-color: rgba(255, 255, 255, 0.8); /* Цвет фона */
+    border-radius: 10px; /* Закругление углов */
+}
+
+.tour-detail-info{
+    width: 55%; /* Установите ширину текста в 55% */
+}
+
+.tour-detail-info p {
+    margin: 10px 0; /* Отступы между абзацами */
+    line-height: 1.6; /* Высота строки для улучшения читаемости */
+}
+
+
+.tours-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Отступ между карточками */
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0;
+}
+
+/* Общие стили для туров */
+.tour-item {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tours-list::after {
+    content: "";
+    flex: 1 1 calc(50% - 20px); /* Создает пустое пространство, чтобы выровнять карточки */
+}
+
+.tour-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.tour-info {
+    width: 60%; /* Установите ширину текста в 60% */
+}
+
+
+
+
+.tour-image {
+    width: 45%; /* Установите ширину изображения в 45% */
+    margin-right: 20px; /* Отступ справа */
+    position: relative; /* Для абсолютного позиционирования дополнительных изображений */
+    overflow: hidden; /* Чтобы скрыть дополнительные изображения, выходящие за пределы */
+}
+
+.tour-image img {
+    max-width: 100%; /* Ширина изображения на 100% контейнера */
+    height: auto; /* Высота автоматически, чтобы сохранить пропорции */
+    border-radius: 10px; /* Сглаживаем углы изображения */
+}
+
+/* Основное изображение */
+.main-image {
+    border-radius: 10px;
+    transition: transform 0.4s ease;
+}
+
+.main-image:hover {
+    transform: scale(1.05);
+}
+
+
+
+.tour-item h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.tour-item p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.tour-item a {
+    color: #0059b2;
+    text-decoration: none;
+}
+
+.tour-item a:hover {
+    text-decoration: underline;
+    color: #CC0000;
+}
+
+@keyframes jump-down {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px); /* Adjust this value for the jump distance */
+    }
+}
+
+/* Apply the new animation to .tour-status */
+.tour-status {
+    color: red;
+    font-weight: bold;
+    animation: jump-down 3s infinite;
+    position: relative; /* Ensure proper positioning context */
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Нет туров */
+.no-tours {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 50px;
+}
+
+
+
+.reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.reviews-title {
+    font-size: 2.5em;
+    color: #333;
+}
+
+.create-review-button {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.create-review-button:hover {
+    background-color: #0056b3;
+}
+
+.reviews-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.review-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-item h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    color: #333;
+}
+
+.review-item p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.review-item .user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-item .user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.review-item .user-info strong {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.review-item .comment {
+    font-size: 1em;
+    color: #555;
+}
+
+.review-item .created-at {
+    font-size: 0.9em;
+    color: #999;
+}
+
+/* Стили для контейнера фильтров */
+.reviews-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-sort {
+    display: flex;
+    gap: 15px; /* Увеличиваем расстояние между кнопками */
+    align-items: center;
+}
+
+.sort-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px 20px; /* Увеличиваем размер кнопок */
+    border-radius: 8px; /* Увеличиваем радиус скругления */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px; /* Увеличиваем размер текста */
+    font-weight: bold; /* Делаем текст жирным */
+}
+
+.sort-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Стили для выпадающего списка туров */
+.tour-dropdown {
+    position: absolute;
+    background: #fff; /* Фон совпадает с родительским элементом */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0; /* Убираем отступы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 300px; /* Фиксированная ширина */
+    max-height: 300px; /* Максимальная высота */
+    overflow-y: auto; /* Добавляем прокрутку */
+    left: 0; /* Перемещаем в левую часть */
+    top: 60px; /* Располагаем под кнопкой "Тур" */
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: flex-end; /* Крестик справа */
+    align-items: center;
+    padding: 10px;
+    background: #f9f9f9; /* Легкий фон для заголовка */
+    border-bottom: 1px solid #ddd; /* Граница под заголовком */
+}
+
+.close-dropdown {
+    font-size: 24px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-dropdown:hover {
+    color: #000;
+}
+
+/* Стили для чекбоксов */
+.checkbox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Отступы внутри строки */
+    background: #fff; /* Фон строки */
+    border-bottom: 1px solid #eee; /* Линия между строками */
+}
+
+.checkbox:last-child {
+    border-bottom: none; /* Убираем линию для последней строки */
+}
+
+.checkbox-label {
+    font-size: 16px;
+    color: #333;
+    padding-left: 10px;
+}
+
+.checkbox-input {
+    appearance: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkbox-input:checked::after {
+    content: "\2714";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #000;
+}
+
+.checkbox-input:disabled {
+    background: #ccc;
+    border-color: #ccc;
+}
+
+.checkbox-input:disabled::after {
+    filter: grayscale(100%);
+}
+
+.tours-filter-form {
+    margin: 0;
+    padding: 0;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star.filled {
+    color: #FFD700;
+}
+
+.star.empty {
+    color: #ccc;
+}
+
+
+.sort-button span {
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+form {
+    width: 100%;
+    max-width: 500px;
+    margin: 75px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+form h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+form p {
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+    color: #666;
+}
+
+/* Общие ошибки формы */
+.form-error {
+    display: none; /* По умолчанию скрываем блок */
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff3f3;
+    border: 1px solid #ffcccc;
+    border-radius: 8px;
+    color: #e74c3c;
+    font-size: 14px;
+}
+
+.form-error:not(:empty) {
+    display: flex; /* Показываем блок только если он содержит ошибки */
+}
+
+.form-error i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.form-error ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.form-error li {
+    margin-bottom: 5px;
+}
+
+/* Стилизация полей */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #7494ec;
+}
+
+/* Ошибки полей */
+form div {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Кнопка отправки */
+form button[type="submit"] {
+    width: 100%;
+    height: 48px;
+    background: #7494ec;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+form button[type="submit"]:hover {
+    background: #5a7ddc;
+}
+/* Пагинация /*
+/* Стили пагинации */
+.center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #007bff; /* Синий цвет */
+    color: white;
+    border: 1px solid #007bff; /* Синий цвет границы */
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+/* Стили для звезд */
+.rating-stars {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.star {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.star.filled {
+    color: #FFD700; /* Желтый цвет для заполненных звезд */
+}
+
+.star.empty {
+    color: #ccc; /* Серый цвет для пустых звезд */
+}
+
+
+/* форма для отзыва */
+.add-review-container{
+    background: #e9f0f4; /* Светло-синий фон */
+    font-family: 'Roboto', sans-serif; /* Установлен более приятный шрифт */
+
+
+}
+
+
+..add-review-form {
+    position: relative;
+    max-width: 600px; /* Увеличена ширина формы в 1.5 раза */
+    margin: 50px auto 0;
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    padding: 50px; /* Добавлен внутренний отступ */
+}
+
+.form-left-decoration, .form-right-decoration {
+    display: none; /* Убраны синие вставки по бокам формы */
+}
+
+.circle {
+    display: none; /* Убран круг внизу слева */
+}
+
+.form-inner {
+    padding: 0; /* Убран внутренний отступ, так как он уже есть в .add-review-form */
+}
+
+.form-inner input, .form-inner textarea, .form-inner select {
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 20px; /* Увеличен отступ между полями */
+    background: #E9EFF6; /* Светло-синий фон для полей ввода */
+    line-height: 40px;
+    border-width: 0;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}
+
+.form-inner input[type="submit"] {
+    margin-top: 30px;
+    background: #3498db; /* Светло-синий цвет для кнопки */
+    border-bottom: 4px solid #2980b9; /* Темнее-синий цвет для границы кнопки */
+    color: white;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    font-family: 'Roboto', sans-serif; /* Установлен более приятный шрифт */
+    font-weight: 500; /* Установлен жирный шрифт для кнопки */
+}
+
+.form-inner input[type="submit"]:hover {
+    background: #2980b9; /* Темнее-синий цвет для кнопки при наведении */
+}
+
+.form-inner textarea {
+    resize: none;
+}
+
+.form-inner h3 {
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif; /* Установлен более приятный шрифт */
+    font-weight: 500; /* Установлен жирный шрифт для заголовка */
+    font-size: 24px;
+    color: #34495e; /* Темно-синий цвет для заголовка */
+    text-align: center;
+    margin-bottom: 30px; /* Увеличен отступ под заголовком */
+}
+
+.add-review-group {
+    margin-bottom: 30px; /* Увеличен отступ между группами полей */
+}
+
+.add-review-label {
+    display: block;
+    font-family: 'Roboto', sans-serif; /* Установлен более приятный шрифт */
+    font-weight: 500; /* Установлен жирный шрифт для надписей */
+    font-size: 1.2em; /* Увеличен размер надписей */
+    color: #34495e; /* Темно-синий цвет для надписей */
+    margin-bottom: 10px; /* Увеличен отступ между надписью и полем ввода */
+}
+
+.add-review-error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px; /* Добавлен отступ сверху для ошибок */
+}
+
+.add-review-rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px; /* Увеличен отступ под звездами */
+}
+
+.add-review-star-label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.add-review-star {
+    font-size: 30px;
+    color: #bdc3c7; /* Серый цвет для пустых звезд */
+    transition: color 0.3s;
+}
+
+.add-review-star.filled {
+    color: #2980b9; /* Темнее-синий цвет для заполненных звезд */
+}
+
+.add-review-star-label input[type="radio"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+textarea[name="comment"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    font-size: 1em;
+}
+
+select[name="tour_id"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+
+
+
+
+
+
+.contacts-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.contacts-container .logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.contacts-container h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.contact-list li img {
+    width: 30px;
+    margin-right: 15px;
+}
+
+.contact-list li a {
+    text-decoration: none;
+    color: #0059b2;
+    transition: color 0.3s ease;
+}
+
+.contact-list li a:hover {
+    color: #CC0000;
+}
+
+.contact-list li img {
+    vertical-align: middle;
+}
+
+.company-logo {
+    text-align: center; /* Центрируем логотип */
+    margin-bottom: 30px; /* Отступ снизу */
+}
+
+.company-logo img {
+    width: 200px;
+}
+
+/* Стили для гида */
+
+.guide-title {
+    text-align: center; /* Заголовок по центру */
+    font-size: 28px; /* Увеличенный размер шрифта заголовка */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.guide-photo {
+    display: flex; /* Используем flexbox для размещения фото */
+    justify-content: center; /* Центрируем фото */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.guide-photo img {
+    max-width: 400px; /* Максимальная ширина изображения */
+    width: 100%; /* Ширина изображения на 100% контейнера */
+    height: auto; /* Высота автоматически, чтобы сохранить пропорции */
+    border-radius: 10px; /* Закругление углов изображения */
+}
+
+.guide-contacts {
+    text-align: center; /* Центрируем текст контактов */
+    font-size: 18px; /* Размер шрифта для контактов */
+    margin-bottom: 15px; /* Отступ снизу */
+    background-color: rgba(0, 0, 0, 0.1); /* Полупрозрачный фон для выделения */
+    padding: 10px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругление углов фона */
+    width: 50%; /* Ширина блока контактов */
+    margin-left: auto; /* Центрирование блока контактов */
+    margin-right: auto; /* Центрирование блока контактов */
+}
+
+.guide-description {
+    text-align: center; /* Центрируем текст описания */
+    font-size: 16px; /* Размер шрифта описания */
+    line-height: 1.6; /* Высота строки для улучшения читаемости */
+    width: 50%; /* Ширина описания */
+    margin-left: auto; /* Центрирование блока описания */
+    margin-right: auto; /* Центрирование блока описания */
+}
+
+
+.datetime-picker {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px; /* Добавляем отступ снизу */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #555;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.list-pages {
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.list-pages ul {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list-pages ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.list-pages a {
+    color: #000;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.list-pages .page-num {
+    display: inline-flex;          /* Выравнивание в одну линию */
+    justify-content: center;       /* Центрирование текста по горизонтали */
+    align-items: center;           /* Центрирование текста по вертикали */
+    width: 45px;
+    height: 45px;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;            /* Круглая форма */
+    font-size: 24px;
+    color: #000;
+    transition: background-color 0.3s ease;
+}
+container
+.list-pages .page-num:hover {
+    box-shadow: 3px 3px 1px #d0d0d0;
+    background-color: #e0e0e0;     /* Немного темнее при наведении */
+}
+
+/* Стили для текущей страницы */
+.list-pages .page-num-active {
+    background-color: #808080;     /* Серый фон для активной страницы */
+
+}
+
+/* Стили для контейнера формы */
+.booking-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Стили для формы */
+.booking-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Анимация появления формы */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Стили для группы полей */
+.form-group {
+    margin-bottom: 25px;
+    color: #7494ec;
+}
+
+/* Стили для меток */
+.form-label {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Стили для полей ввода */
+.booking-form input[type="text"],
+.booking-form input[type="number"],
+.booking-form select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #555;
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-form input[type="text"]:focus,
+.booking-form input[type="number"]:focus,
+.booking-form select:focus {
+    border-color: #7494ec;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+/* Стили для ошибок */
+.field-errors {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Стили для итоговой цены */
+.total-price {
+    font-size: 24px;
+    font-weight: 600;
+    color: #7494ec;
+}
+
+/* Стили для свободных мест */
+.free-seats {
+    display: block;
+    font-size: 20px;
+    color: #7494ec;
+    margin-top: 10px;
+}
+
+/* Контейнер для формы */
+.booking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Информационная надпись */
+.info-message {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Градиентный фон */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    animation: fadeIn 0.8s ease-in-out;
+    width: 100%;
+}
+
+.info-message h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.info-message p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Контейнер для списка туров */
+.tour-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+
+
+
+/* Контейнер для фильтров */
+.list_tours-filters-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Кнопка для открытия модального окна фильтров */
+.list_tours-filter-toggle {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.list_tours-filter-toggle:hover {
+    background-color: #0056b3;
+}
+
+/* Модальное окно фильтров */
+.list_tours-filter-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.list_tours-filter-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.list_tours-close-modal {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.list_tours-close-modal:hover {
+    color: #000;
+}
+
+/* Форма в модальном окне фильтров */
+.list_tours-filter-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.list_tours-filter-form p {
+    margin: 0;
+}
+
+.list_tours-filter-form label {
+    font-size: 16px;
+    color: #333;
+}
+
+.list_tours-filter-form select,
+.list_tours-filter-form input[type="text"],
+.list_tours-filter-form input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.list_tours-filter-form select:focus,
+.list_tours-filter-form input[type="text"]:focus,
+.list_tours-filter-form input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.list_tours-filter-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+}
+
+.list_tours-filter-button:hover {
+    background-color: #0056b3;
+}
+
+/* Основные фильтры */
+.list_tours-main-filters {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.list_tours-filter-circle {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.list_tours-filter-circle:hover {
+    background-color: #e0e0e0;
+}
+
+/* Dropdown контент */
+.list_tours-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+    padding: 10px;
+    right: 0;
+    top: 100%;
+}
+
+.list_tours-dropdown-content label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Стили для списка туров */
+.list_tours-tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.list_tours-tour-card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden; /* Убираем выход за границы карточки */
+
+}
+
+.list_tours-tour-card:hover {
+    transform: translateY(-5px);
+
+}
+
+.list_tours-tour-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.list_tours-main-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.list_tours-main-image:hover {
+    transform: scale(1.1);
+}
+
+.list_tours-tour-details {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.list_tours-tour-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.list_tours-tour-description {
+    font-size: 16px;
+    color: #6c757d;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.list_tours-tour-info-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.list_tours-tour-info-table td {
+    padding: 10px;
+    color: #333;
+}
+
+.list_tours-tour-info-table td:first-child {
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.list_tours-tour-status {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.list_tours-buy-now-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.list_tours-buy-now-button:hover {
+    background-color: #218838;
+}
+
+.list_tours-more-info-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.list_tours-more-info-button:hover {
+    background-color: #0056b3;
+}
+
+.list_tours-tour-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto; /* Позиционирование внизу карточки */
+}
+
+.list_tours-no-tours {
+    font-size: 18px;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Стиль для рейтинга в правом верхнем углу */
+.tour-rating-top {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 2px; /* Расстояние между числом и звездой */
+    z-index: 10; /* Чтобы рейтинг был поверх других элементов */
+}
+
+.tour-rating-top .rating-value {
+    font-weight: bold;
+    color: #FFD700; /* Цвет текста рейтинга */
+}
+
+.rating-value a {
+    font-weight: bold;
+    color: #FFD700;
+    text-decoration: none;
+}
+.rating-value a:hover {
+    color: #8A2BE2; /* Яркий фиолетовый цвет */
+}
+
+.tour-rating-top .rating-star {
+    font-size: 16px;
+    color: #FFD700; /* Цвет звезды */
+}
+
+.tour-rating-top: hover{
+    font-size: 16px;
+    color: #8A2BE2; /* Цвет звезды */
+}
+
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Контейнер для детальной информации о туре */
+.detail-tour-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Заголовок тура */
+.detail-tour-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Контейнер для фотографий */
+.detail-tour-images {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Слайдер фотографий */
+.detail-tour-photo-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Обёртка для фотографий */
+.detail-tour-photo-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Фотография */
+.detail-tour-photo {
+    flex: 0 0 100%;
+    display: none;
+}
+
+.detail-tour-main-image {
+    width: 100%;
+    height: 600px; /* Увеличена высота фотографий */
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.detail-tour-main-image:hover {
+    transform: scale(1.05);
+}
+
+/* Стрелки переключения фотографий */
+.detail-tour-slider-prev,
+.detail-tour-slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.detail-tour-slider-prev:hover,
+.detail-tour-slider-next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.detail-tour-slider-prev {
+    left: 10px;
+}
+
+.detail-tour-slider-next {
+    right: 10px;
+}
+
+/* Сообщение об отсутствии фото */
+.detail-tour-no-photo {
+    font-size: 18px;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Информационный блок */
+.detail-tour-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Описание тура */
+.detail-tour-description {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Подзаголовок */
+.detail-tour-subtitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Таблица информации о туре */
+.detail-tour-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.detail-tour-info-table td {
+    padding: 15px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-tour-info-table tr:last-child td {
+    border-bottom: none;
+}
+
+.detail-tour-info-table td:first-child {
+    font-weight: bold;
+    color: #6c757d;
+    background-color: #fafafa;
+}
+
+/* Контейнер для карты */
+.detail-tour-map {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Контейнер карты */
+.detail-tour-map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Статус отсутствия свободных мест */
+.detail-tour-status {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Кнопка "Купить тур" */
+.detail-tour-buy-now-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    align-self: center;
+}
+
+.detail-tour-buy-now-button:hover {
+    background-color: #218838;
+}
+
+/* Контейнер действий */
+.detail-tour-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Сообщения об ошибках и успехах */
+.messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.messages li {
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.messages .error {
+    background-color: #dc3545;
+}
+
+.messages .success {
+    background-color: #28a745;
+}
+
+/* Контейнер для детальной информации о локации */
+.location-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Заголовок локации */
+.location-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Контейнер для фотографий */
+.location-images {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Слайдер фотографий */
+.location-photo-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Обёртка для фотографий */
+.location-photo-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Фотография */
+.location-photo {
+    flex: 0 0 100%;
+    display: none;
+}
+
+.location-main-image {
+    width: 100%;
+    height: 600px; /* Увеличена высота фотографий */
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.location-main-image:hover {
+    transform: scale(1.05);
+}
+
+/* Стрелки переключения фотографий */
+.location-slider-prev,
+.location-slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.location-slider-prev:hover,
+.location-slider-next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.location-slider-prev {
+    left: 10px;
+}
+
+.location-slider-next {
+    right: 10px;
+}
+
+/* Сообщение об отсутствии фото */
+.location-no-photo {
+    font-size: 18px;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Информационный блок */
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Описание локации */
+.location-description {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Подзаголовок */
+.location-subtitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Контейнер для карты */
+.location-map {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Контейнер карты */
+.location-map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Сообщения об ошибках и успехах */
+.messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.messages li {
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.messages .error {
+    background-color: #dc3545;
+}
+
+.messages .success {
+    background-color: #28a745;
+}

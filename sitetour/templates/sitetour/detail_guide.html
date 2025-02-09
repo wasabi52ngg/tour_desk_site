@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block mainpart %}
+<h2 class="guide-title">{{ guide.name }} {{ guide.surname }}</h2>
+
+{% if guide.photo %}
+    <div class="guide-photo">
+        <img src="{{ guide.photo.url }}" alt="{{ guide.name }} {{ guide.surname }}" class="photo">
+    </div>
+{% endif %}
+
+<div class="guide-contacts">
+    <p><strong>Телефон:</strong> {{ guide.phone }}</p>
+    <p><strong>Email:</strong> {{ guide.email|default:"Не указан" }}</p>
+</div>
+
+<div class="guide-description">
+    <p><strong>Описание:</strong> {{ guide.bio|default:"Не предоставлено" }}</p>
+</div>
+{% endblock %}

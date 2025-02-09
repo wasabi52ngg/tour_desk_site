@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainpart %}
+<div class="container">
+    <form action="" method="post" class="add-review-form">
+        {% csrf_token %}
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            <h3 class="add-review-title">Заполните форму для отзыва</h3>
+            <div class="add-review-error">{{ form.non_field_errors }}</div>
+            {% for field in form %}
+                <div class="add-review-group">
+                    <label class="add-review-label" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                        {% if field.label == "Комментарий" %}
+                            (Ограничение на 1000 символов)
+                        {% endif %}
+                    </label>
+                    {% if field.name == 'rating' %}
+                        <div class="add-review-rating">
+                            {% for choice in field %}
+                                <label class="add-review-star-label">
+                                    {{ choice.tag }}
+                                    <span class="add-review-star">&#9733;</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                    <div class="add-review-error">{{ field.errors }}</div>
+                </div>
+            {% endfor %}
+            <input type="submit" value="Отправить" class="add-review-submit-button">
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const stars = document.querySelectorAll('.add-review-star-label');
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        const index = Array.from(stars).indexOf(this);
+                        stars.forEach((s, i) => {
+                            if (i <= index) {
+                                s.querySelector('.add-review-star').classList.add('filled');
+                            } else {
+                                s.querySelector('.add-review-star').classList.remove('filled');
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    </form>
+</div>
+{% endblock %}

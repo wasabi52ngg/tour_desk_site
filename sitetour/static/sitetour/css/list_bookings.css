@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Растягивание фонового изображения на всю страницу */
+body {
+    background: url('/static/img/back-white-min.jpg') no-repeat center center fixed;
+    background-size: cover; /* Растягиваем фон по всей странице */
+    color: #444;
+    font-family: Arial, sans-serif;
+}
+
+/* Хедер с логотипом, меню и авторизацией */
+.header {
+    background: #0c1e35;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Логотип слева */
+.logo {
+    width: 100px;
+    height: 60px;
+    background: url('/static/img/logo.png') no-repeat center;
+    background-size: contain;
+}
+
+ul.mainmenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    color: #ADD8E6;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+ul.mainmenu li {
+    margin: 0 40px;
+}
+
+ul.mainmenu li a {
+    color: #ADD8E6;
+    text-decoration: none;
+}
+
+ul.mainmenu li a:hover {
+    color: #FDA83D;
+}
+ul.mainmenu li.selected a {
+    color: #FFFFFF;
+    background: linear-gradient(90deg, #007bff, #007bff);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Блок для авторизации справа */
+.auth-links {
+    display: flex;
+    align-items: center;
+    color: #fdc073;
+    font-size: 20px;
+}
+
+.auth-links a {
+    color: #fdc073;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.auth-links a:hover {
+    color: #FDA83D;
+}
+
+.clear {
+    clear: both;
+}
+
+/* Стили для Hero секции */
+.hero {
+    height: 100vh;
+    background: url('/static/img/back.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); /* Темная тень для заголовка */
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 15px; /* Отступ сверху для блока действий */
+}
+
+.cancel-button{
+    background-color: #f44336; /* Красный цвет */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.delete-button{
+    background-color: #f44336; /* Красный цвет */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: #d32f2f;
+}
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+.cancel-form {
+    display: inline-block; /* Для корректного отображения форм на одной линии */
+}
+
+.list-pages {
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.list-pages ul {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list-pages ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.list-pages a {
+    color: #000;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.list-pages .page-num {
+    display: inline-flex;          /* Выравнивание в одну линию */
+    justify-content: center;       /* Центрирование текста по горизонтали */
+    align-items: center;           /* Центрирование текста по вертикали */
+    width: 45px;
+    height: 45px;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;            /* Круглая форма */
+    font-size: 24px;
+    color: #000;
+    transition: background-color 0.3s ease;
+}
+
+.list-pages .page-num:hover {
+    box-shadow: 3px 3px 1px #d0d0d0;
+    background-color: #e0e0e0;     /* Немного темнее при наведении */
+}
+
+/* Стили для текущей страницы */
+.list-pages .page-num-active {
+    background-color: #808080;     /* Серый фон для активной страницы */
+
+}
+
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+
+
+
+
+
+/* Основной контейнер для списка заказов */
+.orders-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 50px auto;
+    backdrop-filter: blur(10px); /* Эффект размытия */
+}
+
+.orders-title {
+    font-size: 32px;
+    text-align: center;
+    color: #3F4137;
+    margin-bottom: 20px;
+}
+
+/* Стили для списка заказов */
+.orders-list {
+    list-style: none;
+    padding: 0;
+}
+
+.order-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Информация о заказе */
+.order-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.tour-details {
+    flex-basis: 60%;
+}
+
+.tour-id, .participants, .total-price {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.order-meta {
+    flex-basis: 40%;
+    text-align: right;
+}
+
+.status {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* Статусы заказов */
+.status.pending {
+    background-color: #fdc073;
+    color: white;
+}
+
+.status.completed {
+    background-color: #4caf50;
+    color: white;
+}
+
+.status.canceled {
+    background-color: #d9534f;
+    color: white;
+}
+
+.created-at {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Стили для блока с пустыми заказами */
+.no-orders {
+    text-align: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-orders h1 {
+    font-size: 28px;
+    color: #d9534f;
+}
+
+.no-orders p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+/* Пагинация /*
+/* Стили пагинации */
+.center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #007bff; /* Синий цвет */
+    color: white;
+    border: 1px solid #007bff; /* Синий цвет границы */
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<div class="container">
+    <h1>Вход</h1>
+    <form action="{% url 'users:login' %}" method="post" class="auth-form" autocomplete="on">
+        {% csrf_token %}
+        <input type='hidden' name='next' value='{{next}}'/>
+
+        <!-- Общие ошибки формы -->
+        {% if form.non_field_errors %}
+        <div class="form-error-box">
+            <i class='bx bx-error-circle'></i>
+            <ul>
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Поля формы -->
+        {% for field in form %}
+        <div class="input-box">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            <i class='bx bxs-user'></i>
+            <!-- Ошибки конкретного поля -->
+            {% if field.errors %}
+            <div class="field-errors">
+                <i class='bx bx-error'></i>
+                <ul>
+                    {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <div class="forgot-link">
+            <a href="{% url 'users:password_reset' %}">Забыли пароль?</a>
+        </div>
+        <button type="submit" class="btn">Войти</button>
+        <p>или войдите с помощью социальных платформ</p>
+        <div class="social-icons">
+                <a href="#" title="Войти через GitHub" class="icon github"></a>
+        </div>
+    </form>
+</div>
+{% endblock %}

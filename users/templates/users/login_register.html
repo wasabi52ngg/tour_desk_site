@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<div class="container">
+    <div class="form-box login">
+        <form action="{% url 'users:login-register' %}" method="post" class="auth-form" autocomplete="on">
+            {% csrf_token %}
+            <input type='hidden' name='next' value='{{next}}'/>
+            <input type="hidden" name="login" value="true">
+            <h1>Вход</h1>
+            <div class="form-error">{{ login_form.non_field_errors }}</div>
+            {% for field in login_form %}
+            <div class="input-box">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <i class='bx bxs-user'></i>
+                <div class="field-errors">{{ field.errors }}</div>
+            </div>
+            {% endfor %}
+            <div class="forgot-link">
+                <a href="{% url 'users:password_reset' %}">Забыли пароль?</a>
+            </div>
+            <button type="submit" class="btn">Войти</button>
+            <p>или войдите с помощью социальных платформ</p>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-google'></i></a>
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-github'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </form>
+    </div>
+    <div class="form-box register">
+        <form action="{% url 'users:login-register' %}" method="post" enctype="multipart/form-data" class="auth-form" autocomplete="on">
+            {% csrf_token %}
+            <input type="hidden" name="register" value="true">
+            <h1>Регистрация</h1>
+            <div class="form-error">{{ register_form.non_field_errors }}</div>
+            {% for field in register_form %}
+            <div class="input-box">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <i class='bx bxs-user'></i>
+                <div class="field-errors">{{ field.errors }}</div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn">Зарегистрироваться</button>
+            <p>или зарегистрируйтесь с помощью социальных платформ</p>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-google'></i></a>
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-github'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </form>
+    </div>
+    <div class="toggle-box">
+        <div class="toggle-panel toggle-left">
+            <h1>Добро пожаловать!</h1>
+            <p>У вас ещё нет аккаунта?</p>
+            <button class="btn register-btn">Зарегистрироваться</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+            <h1>Добро пожаловать обратно!</h1>
+            <p>У вас уже есть аккаунт?</p>
+            <button class="btn login-btn">Войти</button>
+        </div>
+    </div>
+</div>
+<script>
+const container = document.querySelector('.container');
+const registerBtn = document.querySelector('.register-btn');
+const loginBtn = document.querySelector('.login-btn');
+registerBtn.addEventListener('click', () => {
+    container.classList.add('active');
+});
+loginBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+});
+</script>
+{% endblock %}

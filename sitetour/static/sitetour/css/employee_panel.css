@@ -1,0 +1,569 @@
+/* Общие стили для боковой панели */
+.sidebar {
+    position: fixed; /* Фиксированное положение */
+    left: 10px; /* Отступ от левого края */
+    top: 20px; /* Отступ от верхнего края */
+    width: 200px; /* Ширина боковой панели */
+}
+
+/* Стили для списка кнопок */
+.button-list {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+    margin: 0; /* Убираем отступы */
+}
+
+/* Стили для кнопок */
+.button {
+    display: inline-block; /* Делаем кнопки блочными элементами */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    margin-bottom: 10px; /* Отступ снизу */
+    background-color: #4caf50; /* Цвет фона */
+    color: white; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругленные углы */
+    transition: background-color 0.3s ease; /* Плавный переход при наведении */
+}
+
+.button:hover {
+    background-color: #45a049; /* Цвет фона при наведении */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Растягивание фонового изображения на всю страницу */
+body {
+    background: url('/static/img/back-white-min.jpg') no-repeat center center fixed;
+    background-size: cover; /* Растягиваем фон по всей странице */
+    color: #444;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background: #0c1e35;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed; /* Фиксируем хедер */
+    top: 0; /* Закрепляем его в верхней части страницы */
+    left: 0; /* Закрепляем его слева */
+    right: 0; /* Закрепляем его справа */
+    z-index: 1000; /* Устанавливаем высокий z-index, чтобы хедер был над другими элементами */
+}
+
+/* Основное содержимое страницы */
+.main-part {
+    margin-top: 60px; /* Отступ равен высоте хедера */
+    padding: 20px;
+}
+
+/* Логотип слева */
+.logo {
+    width: 100px;
+    height: 60px;
+    background: url('/static/img/logo.png') no-repeat center;
+    background-size: contain;
+}
+
+/* Меню посередине */
+ul.mainmenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    color: #ADD8E6;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+ul.mainmenu li {
+    margin: 0 40px;
+}
+ul.mainmenu li a {
+    color: #ADD8E6;
+    text-decoration: none;
+}
+ul.mainmenu li a:hover {
+    color: #FDA83D;
+}
+ul.mainmenu li.selected a {
+    color: #FFFFFF;
+    background: linear-gradient(90deg, #007bff, #007bff);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Блок для авторизации справа */
+.auth-links {
+    display: flex;
+    align-items: center;
+    color: #fdc073;
+    font-size: 20px;
+}
+.auth-links a {
+    color: #fdc073;
+    text-decoration: none;
+    margin-left: 20px;
+}
+.auth-links a:hover {
+    color: #FDA83D;
+}
+.clear {
+    clear: both;
+}
+
+/* Стили для панели сотрудника */
+.employee-sidebar {
+    position: fixed; /* Закрепляем сайдбар */
+    left: 20px; /* Отступ от левого края */
+    top: 100px; /* Отступ от верхней части страницы */
+    width: 220px; /* Ширина боковой панели */
+    background-color: #f4e3d3; /* Бежевый фон для сайдбара */
+    padding: 20px;
+    border-radius: 10px; /* Закругление углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+/* Стили для кнопок */
+.button-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.button {
+    display: block; /* Блоковый элемент для нажатия на всю ширину */
+    padding: 12px 20px;
+    margin-bottom: 12px;
+    background-color: #d4b79e; /* Бежево-кофейный цвет */
+    color: #3F2E2B; /* Темный цвет текста */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #c7a894; /* Более темный оттенок при наведении */
+}
+
+.confirm-button {
+    background-color: #4caf50; /* Зеленый цвет */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #f44336; /* Красный цвет */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.confirm-button:hover {
+    background-color: #45a049;
+}
+
+.cancel-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Основной контейнер для списка заказов */
+.orders-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 50px auto;
+    backdrop-filter: blur(10px); /* Эффект размытия */
+}
+
+.orders-title {
+    font-size: 32px;
+    text-align: center;
+    color: #3F4137;
+    margin-bottom: 20px;
+}
+
+/* Стили для списка заказов */
+.orders-list {
+    list-style: none;
+    padding: 0;
+}
+
+.order-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Информация о заказе */
+.order-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.tour-details {
+    flex-basis: 60%;
+}
+
+.tour-id, .participants, .total-price {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.order-meta {
+    flex-basis: 40%;
+    text-align: right;
+}
+
+.status {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* Статусы заказов */
+.status.pending {
+    background-color: #fdc073;
+    color: white;
+}
+
+.status.completed {
+    background-color: #4caf50;
+    color: white;
+}
+
+.status.canceled {
+    background-color: #d9534f;
+    color: white;
+}
+
+.created-at {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Стили для блока с пустыми заказами */
+.no-orders {
+    text-align: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-orders h1 {
+    font-size: 28px;
+    color: #d9534f;
+}
+
+.no-orders p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Общие стили для формы */
+
+
+form {
+    width: 100%;
+    max-width: 500px;
+    margin: 75px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+form h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+form p {
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+    color: #666;
+}
+
+/* Общие ошибки формы */
+.form-error {
+    display: none; /* По умолчанию скрываем блок */
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff3f3;
+    border: 1px solid #ffcccc;
+    border-radius: 8px;
+    color: #e74c3c;
+    font-size: 14px;
+}
+
+.form-error:not(:empty) {
+    display: flex; /* Показываем блок только если он содержит ошибки */
+}
+
+.form-error i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.form-error ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.form-error li {
+    margin-bottom: 5px;
+}
+
+/* Стилизация полей */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #7494ec;
+}
+
+/* Ошибки полей */
+form div {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Кнопка отправки */
+form button[type="submit"] {
+    width: 100%;
+    height: 48px;
+    background: #7494ec;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+form button[type="submit"]:hover {
+    background: #5a7ddc;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Стиль для выпадающих списков */
+.button-list .dropdown-menu {
+    display: none; /* Скрываем подменю по умолчанию */
+    position: relative; /* Устанавливаем позиционирование */
+    margin-top: -10px; /* Подвиньте вверх, чтобы соприкасалось с кнопкой */
+    padding-top: 10px; /* Добавьте внутренний отступ сверху, если нужно */
+    background-color: #b39781; /* Более темный фон */
+    border-radius: 5px; /* Закругленные углы */
+}
+
+.button-list .button.active + .dropdown-menu {
+    display: block;
+}
+
+
+.dropdown-content {
+    display: none; /* По умолчанию скрыто */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content li a {
+    display: block;
+    padding: 8px 20px;
+    background-color: #bfa894; /* Более темный фон */
+    color: #3F2E2B;
+    text-decoration: none;
+}
+
+.dropdown-content li a:hover {
+    background-color: #a38974;
+}
+
+/* Стили для стрелки */
+.arrow {
+    margin-left: 10px;
+    transition: transform 0.3s;
+}
+
+.button.active .arrow {
+    transform: rotate(90deg); /* Поворот стрелки вправо */
+}
+
+
+
+:root {
+  --text-color: #7d84ab;
+  --secondary-text-color: #dee2ec;
+  --bg-color: #0c1e35;
+  --secondary-bg-color: #0b1a2c;
+}
+.layout {
+  z-index: 1;
+}
+.layout .sidebar {
+  color: #7d84ab;
+  background-color: #0c1e35;
+  width: 300px; /* Увеличиваем ширину сайдбара */
+  transition: all 0.3s;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 60px;
+}
+.layout .sidebar .sidebar-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.layout .sidebar .sidebar-header {
+  height: 100px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+.layout .sidebar .sidebar-content {
+  flex-grow: 1;
+  padding: 10px 0;
+}
+.layout .sidebar .pro-sidebar-logo {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.layout .sidebar .pro-sidebar-logo h5 {
+  font-size: 24px; /* Увеличиваем размер шрифта заголовка */
+  white-space: nowrap;
+  transition: opacity 0.3s;
+  margin: 0;
+  color: inherit;
+}
+.layout .sidebar .menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.layout .sidebar .menu .menu-header {
+  padding: 15px 25px;
+  font-size: 1em; /* Увеличиваем размер шрифта заголовков меню */
+  color: rgba(125, 132, 171, 0.5);
+  text-transform: uppercase;
+}
+.layout .sidebar .menu .menu-item a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #7d84ab;
+  transition: all 0.3s;
+  font-size: 18px; /* Увеличиваем размер шрифта для всех пунктов меню */
+}
+.layout .sidebar .menu .menu-item a .menu-title {
+  flex-grow: 1;
+  white-space: nowrap;
+}
+.layout .sidebar .menu .menu-item a .arrow {
+  transition: transform 0.3s;
+}
+.layout .sidebar .menu .menu-item a:hover {
+  color: #dee2ec;
+}
+.layout .sidebar .menu .sub-menu .sub-menu-list {
+  display: none;
+  padding-left: 20px;
+  background-color: #0b1a2c;
+}
+.layout .sidebar .menu .sub-menu.open .arrow {
+  transform: rotate(90deg);
+}
+.layout .sidebar .menu .sub-menu.open .sub-menu-list {
+  display: block;
+}
+.layout .sidebar.collapsed {
+  width: 60px;
+}
+.layout .sidebar.collapsed .pro-sidebar-logo h5,
+.layout .sidebar.collapsed .menu-header,
+.layout .sidebar.collapsed .menu-title {
+  opacity: 0;
+  visibility: hidden;
+}
+/* Базовые стили */
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}

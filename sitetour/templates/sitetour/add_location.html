@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<h1>Добавление локации</h1>
+{% include 'sitetour/includes/employee_sidebar.html' %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- Основная форма для добавления данных локации -->
+    <div class="form-error">{{ form.non_field_errors }}</div>
+    {% for field in form %}
+        <div>
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            <div class="field-errors">{{ field.errors }}</div>
+        </div>
+    {% endfor %}
+
+    <!-- Поля для добавления нескольких фотографий -->
+    <h3>Добавить фотографии</h3>
+    {{ photo_formset.management_form }}
+    {% for photo_form in photo_formset %}
+        <div>
+            {{ photo_form.as_p }}
+            <div class="field-errors">{{ photo_form.errors }}</div>
+        </div>
+    {% endfor %}
+
+    <!-- Кнопка отправки формы -->
+    <p><button type="submit">Отправить</button></p>
+</form>
+{% endblock %}

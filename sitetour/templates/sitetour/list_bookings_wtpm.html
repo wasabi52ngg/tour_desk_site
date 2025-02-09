@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+{% include 'sitetour/includes/employee_sidebar.html' %}
+<div class="container orders-container">
+    <h2 class="orders-title">Заказы, ожидающие подтверждения об оплате</h2>
+    <ul class="orders-list">
+        {% if bookings %}
+            {% for booking in bookings %}
+            <li class="order-item">
+                <div class="order-info">
+                    <div class="tour-details">
+                        <span class="tour-id"><strong>Тур:</strong><a href="{% url 'detail_tour' booking.tour_id.slug %}">{{ booking.tour_id }}</a></span>
+                        <span class="participants"><strong>Участников:</strong> {{ booking.participants }}</span>
+                        <span class="total-price"><strong>Итоговая цена:</strong> {{ booking.total_price }} руб.</span>
+                    </div>
+                    <div class="order-meta">
+                        <span class="order-customer"><strong>Заказчик:</strong> {{ booking.user_id }}
+                            {{ booking.user_id.name }} {{ booking.user_id.surname }} {{ booking.user_id.phone }}
+                            {{ booking.user_id.email|lower }}</span>
+                        <span class="status {{ booking.status|lower }}"><strong>Статус:</strong> {{ booking.get_status_display }}</span>
+                        <span class="created-at"><strong>Дата создания:</strong> {{ booking.created_at }}</span>
+                    </div>
+                </div>
+                <div class="order-actions">
+                    <form action="{% url 'confirm_booking' booking.pk %}" method="post" class="confirm-form">
+                        {% csrf_token %}
+                        <button type="submit" class="confirm-button">Подтвердить</button>
+                    </form>
+                    <form action="{% url 'cancel_booking' booking.pk %}" method="post" class="cancel-form">
+                        {% csrf_token %}
+                        <button type="submit" class="cancel-button">Отменить</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        {% else %}
+        <div class="no-orders">
+            <h1>Все заказы оплачены</h1>
+        </div>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

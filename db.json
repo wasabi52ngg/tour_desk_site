@@ -1,0 +1,2106 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2024-10-21T12:12:36.892Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "На вышке",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2024-10-21T12:12:57.502Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Павел Гребенников",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2024-10-21T12:13:11.752Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "СЛожнга пиппец",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2024-10-21T12:13:49.904Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "пО КРЫШАМ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2024-10-21T12:14:22.725Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "По рестаранам",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2024-10-21T12:31:19.379Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Павел Гребенников",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2024-10-21T12:32:32.680Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Павел Гребенников",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2024-10-21T12:33:52.465Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Павел Гребенников",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2024-10-21T12:35:51.516Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "СЛожнга пиппец",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2024-10-21T12:37:18.424Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "На вышке",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2024-10-21T12:38:16.904Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "1",
+    "object_repr": "Booking object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2024-10-21T13:28:10.225Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "По рестаранам root",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2024-10-21T18:24:28.463Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "Booking object (2)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2024-10-21T19:04:32.210Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "По рестаранам",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u043b\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e\\u0441\\u0442\\u044c\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2024-10-24T14:25:54.031Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "По жунглям",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2024-10-25T08:18:24.635Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "root",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2024-10-25T08:43:24.431Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "root",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2024-10-25T08:43:47.923Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "root",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2024-10-25T08:43:59.870Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "root",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2024-10-25T09:54:28.199Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "3",
+    "object_repr": "root | По жунглям | Оплачено",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2024-10-26T11:21:59.563Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "1",
+    "object_repr": "root | пО КРЫШАМ | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2024-10-26T11:22:04.821Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "root | По рестаранам | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2024-10-26T11:22:06.789Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "4",
+    "object_repr": "wasabi1 | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2024-10-26T11:24:43.462Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "5",
+    "object_repr": "root | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2024-10-26T11:24:46.934Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "4",
+    "object_repr": "wasabi1 | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2024-10-26T11:24:49.568Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "root | По рестаранам | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2024-10-26T11:24:51.255Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "1",
+    "object_repr": "root | пО КРЫШАМ | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2024-10-26T11:47:25.981Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "root | По рестаранам | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2024-10-26T11:47:29.121Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "5",
+    "object_repr": "root | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2024-10-26T11:47:33.524Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "4",
+    "object_repr": "wasabi1 | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2024-10-26T11:47:36.646Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "3",
+    "object_repr": "root | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2024-10-26T11:47:39.394Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "1",
+    "object_repr": "root | пО КРЫШАМ | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2024-10-27T09:06:20.621Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "По рестаранам",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041b\\u043e\\u043a\\u0430\\u0446\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2024-10-27T09:11:55.518Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "По жунглям",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041b\\u043e\\u043a\\u0430\\u0446\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2024-10-27T09:12:01.732Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "пО КРЫШАМ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041b\\u043e\\u043a\\u0430\\u0446\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2024-10-27T09:15:59.680Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "9",
+    "object_repr": "root | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2024-10-27T09:16:01.582Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "3",
+    "object_repr": "root | По жунглям | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2024-10-27T09:16:04.356Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "root | По рестаранам | Ожидает оплаты",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2024-10-27T09:19:42.628Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "По жунглям",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u043b\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e\\u0441\\u0442\\u044c\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2024-10-27T09:21:14.556Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "По жунглям",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2024-10-27T09:21:27.998Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "По жунглям",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u0430\\u0442\\u0430 \\u0438 \\u0432\\u0440\\u0435\\u043c\\u044f \\u043e\\u043a\\u043e\\u043d\\u0447\\u0430\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2024-10-27T09:28:35.521Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "Опукский природный заповедник",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0410\\u0434\\u0440\\u0435\\u0441\", \"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\", \"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2024-10-27T09:29:17.535Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "Опукский природный заповедник",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2024-10-27T09:38:56.754Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "4",
+    "object_repr": "1212",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2024-10-27T09:45:54.078Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "пО КРЫШАМ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2024-10-27T09:47:49.685Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Набережная",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2024-10-27T09:50:25.377Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Мыс Тарханкут",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0410\\u0434\\u0440\\u0435\\u0441\", \"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2024-10-27T09:58:39.259Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Музейно-храмовый комплекс «Новый Херсонес»",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0410\\u0434\\u0440\\u0435\\u0441\", \"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\", \"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2024-10-27T09:58:58.645Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "пО КРЫШАМ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041b\\u043e\\u043a\\u0430\\u0446\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2024-10-27T09:59:08.277Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "пО КРЫШАМ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041b\\u043e\\u043a\\u0430\\u0446\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2024-10-27T10:19:50.329Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Легкая",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2024-10-27T10:20:03.656Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Сложная",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2024-10-27T10:20:15.920Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Средняя",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2024-10-27T10:51:20.382Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "Тайны мыса Тарханкут",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2024-10-27T10:51:41.616Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "Дикая природа Опукского заповедника",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2024-10-27T10:52:02.936Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "Крымская античность: Херсонес нового времени",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2024-10-27T10:55:10.486Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "Дикая природа Опукского заповедника",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2024-10-27T10:55:15.892Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "Крымская античность: Херсонес нового времени",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2024-10-27T10:55:27.082Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "Тайны мыса Тарханкут",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2024-10-27T10:57:32.594Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "Тайны мыса Тарханкут",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u0430\\u0442\\u0430 \\u0438 \\u0432\\u0440\\u0435\\u043c\\u044f \\u043e\\u043a\\u043e\\u043d\\u0447\\u0430\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2024-10-27T10:57:40.028Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "Крымская античность: Херсонес нового времени",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u0430\\u0442\\u0430 \\u0438 \\u0432\\u0440\\u0435\\u043c\\u044f \\u043e\\u043a\\u043e\\u043d\\u0447\\u0430\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2024-10-27T10:58:00.624Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "Тайны мыса Тарханкут",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u0430\\u0442\\u0430 \\u0438 \\u0432\\u0440\\u0435\\u043c\\u044f \\u043e\\u043a\\u043e\\u043d\\u0447\\u0430\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2024-10-27T11:04:33.068Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Павел Гребенников",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2024-10-27T13:28:18.697Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "Фото для Опукский природный заповедник",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2024-10-27T13:34:11.649Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "Фото для Мыс Тарханкут",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2024-10-27T13:34:20.044Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Фото для Музейно-храмовый комплекс «Новый Херсонес»",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2024-10-27T13:40:16.520Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "Фото для Мыс Тарханкут",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2024-10-29T16:54:38.319Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "1",
+    "object_repr": "employess",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2024-10-29T17:03:48.942Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "2",
+    "object_repr": "testgroup",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2024-10-29T17:07:58.588Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "1",
+    "object_repr": "employess",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2024-10-29T17:22:45.457Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "1",
+    "object_repr": "employees",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2024-10-29T17:25:36.040Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "root",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2024-10-29T17:32:08.524Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "5",
+    "object_repr": "Фото для Опукский природный заповедник",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2024-10-29T17:46:27.514Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "6",
+    "object_repr": "Фото для Опукский природный заповедник",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2024-10-29T17:47:20.265Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "7",
+    "object_repr": "Фото для Музейно-храмовый комплекс «Новый Херсонес»",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2024-10-29T17:57:20.495Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Костизи Семенов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add booking",
+    "content_type": 6,
+    "codename": "add_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change booking",
+    "content_type": 6,
+    "codename": "change_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete booking",
+    "content_type": 6,
+    "codename": "delete_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view booking",
+    "content_type": 6,
+    "codename": "view_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add category",
+    "content_type": 7,
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change category",
+    "content_type": 7,
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete category",
+    "content_type": 7,
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view category",
+    "content_type": 7,
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add guide",
+    "content_type": 8,
+    "codename": "add_guide"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change guide",
+    "content_type": 8,
+    "codename": "change_guide"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete guide",
+    "content_type": 8,
+    "codename": "delete_guide"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view guide",
+    "content_type": 8,
+    "codename": "view_guide"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add location",
+    "content_type": 9,
+    "codename": "add_location"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change location",
+    "content_type": 9,
+    "codename": "change_location"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete location",
+    "content_type": 9,
+    "codename": "delete_location"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view location",
+    "content_type": 9,
+    "codename": "view_location"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add review",
+    "content_type": 10,
+    "codename": "add_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change review",
+    "content_type": 10,
+    "codename": "change_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete review",
+    "content_type": 10,
+    "codename": "delete_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view review",
+    "content_type": 10,
+    "codename": "view_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add tour",
+    "content_type": 11,
+    "codename": "add_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change tour",
+    "content_type": 11,
+    "codename": "change_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete tour",
+    "content_type": 11,
+    "codename": "delete_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view tour",
+    "content_type": 11,
+    "codename": "view_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 12,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 12,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 12,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 12,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add location photo",
+    "content_type": 13,
+    "codename": "add_locationphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change location photo",
+    "content_type": 13,
+    "codename": "change_locationphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete location photo",
+    "content_type": 13,
+    "codename": "delete_locationphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view location photo",
+    "content_type": 13,
+    "codename": "view_locationphoto"
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "employees",
+    "permissions": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      49,
+      50,
+      51,
+      52,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "testgroup",
+    "permissions": [
+      1
+    ]
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sitetour",
+    "model": "booking"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "sitetour",
+    "model": "category"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "sitetour",
+    "model": "guide"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "sitetour",
+    "model": "location"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "sitetour",
+    "model": "review"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "sitetour",
+    "model": "tour"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "users",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "sitetour",
+    "model": "locationphoto"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ljcqb0iyfl7s0ym60142bsdowuiqo00d",
+  "fields": {
+    "session_data": ".eJxVjEsOwiAUAO_C2hB-heLSfc9A3uOBVA0kpV0Z725IutDtzGTeLMCxl3D0tIWV2JVJdvllCPGZ6hD0gHpvPLa6byvykfDTdr40Sq_b2f4NCvQytkrJZCeIZMBnMWvrnQWrHEpywpPSKSLMmK1BIDF5AiUAtcRsjE6Sfb7ebzgX:1t5qe4:g7B_2AZaZo3qomGA1mzmZx-ObdLnFv5FEbCjVLAcglM",
+    "expire_date": "2024-11-12T18:08:44.007Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yuphr1fws7ogw21wry32ey414gqm23li",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm217-lpM8ZrI294ABypDipEHeHSCmgfTPzXiLRtta0dV7SVMRZaHH63UbKD247KHdqt1nmua3LNMpdkQftcpgLPy-H-3dQqddvHcBAjBiVAXaZFCuM1oHyiklDxMwcMhtAjzaHqyVW3qJ3GkFb9ka8P6vjNmc:1t2rGg:dbmApvtBklS9hE5SYXh_tZvGIJyJWPETANTnSfQ-3LU",
+    "expire_date": "2024-11-04T12:12:14.516Z"
+  }
+},
+{
+  "model": "sitetour.guide",
+  "pk": 1,
+  "fields": {
+    "name": "Павел",
+    "surname": "Гребенников",
+    "phone": "+7-999-249-63-69",
+    "email": "vamyalopuh@mail.com",
+    "bio": "kmcfkmfxkdmfkdmfkm",
+    "photo": "guides/GutK-IIiEj1mEdbORSuEUwlpjpPy1K-xUMaYTqHjU8IgLTiPuimq5YLItTNvprKJCEcfLO3EiyZxcZ02JmKYmoRF.jpg",
+    "slug": "pavel-grebennikov"
+  }
+},
+{
+  "model": "sitetour.guide",
+  "pk": 2,
+  "fields": {
+    "name": "Иван",
+    "surname": "Стрижов",
+    "phone": "+7-978-798-56-19",
+    "email": "ivankrut@mail.com",
+    "bio": "уже 20 лет кручусь верчусь",
+    "photo": "guides/phrwXEzL.jpg",
+    "slug": "ivan-strizhov"
+  }
+},
+{
+  "model": "sitetour.guide",
+  "pk": 3,
+  "fields": {
+    "name": "Костизи",
+    "surname": "Семенов",
+    "phone": "+7-999-249-63-69",
+    "email": "semenovtozhekrut@mail.ru",
+    "bio": "Учебное подразделение\tИнститут базового инженерного образования\r\nНаправление подготовки\t09.03.02 Информационные системы и технологии\r\nНаправленность (профиль) \t09.03.02 Информационные системы и технологии\r\nКвалификация \tбакалавр\r\nФорма обучения\tОчная\r\nГод поступления\t2022\r\nКурс\t3\r\nСеместр\t1\r\nГруппа\tИСТ-22-2",
+    "photo": "guides/phr1CQ0v.jpg",
+    "slug": "kostizi-semenov"
+  }
+},
+{
+  "model": "sitetour.location",
+  "pk": 1,
+  "fields": {
+    "name": "Музейно-храмовый комплекс «Новый Херсонес»",
+    "address": "Древняя ул., 1, Севастополь",
+    "description": "На территории, занимающей более 22 га, построен монументальный храмово-музейный комплекс (общая площадь зданий составляет 140 тыс.м2). Перед началом строительства были произведены археологические раскопки, в ходе которых специалисты обнаружили более 6 миллионов артефактов, в том числе 340 тысяч уникальных экземпляров музейного значения.\r\n\r\nКомплекс поражает величием архитектуры, детальной проработкой ландшафтных зон, изящной красотой декоративных композиций Все постройки нового города выдержаны в античном стиле.",
+    "slug": "muzejno-hramovyj-kompleks-novyj-hersones"
+  }
+},
+{
+  "model": "sitetour.location",
+  "pk": 2,
+  "fields": {
+    "name": "Мыс Тарханкут",
+    "address": "Республика Крым, Черноморский район, Оленевское сельское поселение, село Оленевка",
+    "description": "Тарханку́т — мыс на западе Крыма, на одноимённом полуострове. В путеводителе Сосногоровой 1871 года мыс назван Экифороф. Популярное место для дайвинга, виндсерфинга, кайтинга.\r\nТарханкут - Рай на краю земли. Побывав на Тарханкуте, вы захотите вернуться туда снова. Чистейший степной воздух, вдыхая который вы опьянеете от смеси ароматов трав, растущих в заповедной зоне, и чистейшее море,которое отрезвит вас, и в которое вам захочется окунуться, и смыть пыль степи после прогулки по побережью. Вы насладитесь красотой природы этого места!",
+    "slug": "mys-tarhankut"
+  }
+},
+{
+  "model": "sitetour.location",
+  "pk": 3,
+  "fields": {
+    "name": "Опукский природный заповедник",
+    "address": "Республика Крым, Ленинский район, Марьевское сельское поселение, Опукский заповедник.1",
+    "description": "Заповедник «Опукский» самый большой заповедник Керченского полуострова. Его площадь составляет 1592,3 гектаров, из них 62 гектаров – акватория Чёрного моря с островами Скалы-Кoрабли, возвышающимися в море в 4 километрах от берега. Ближайшим населенным пунктом, расположенным к востоку на расстоянии 6 километров от границ заповедника, является село Якoвенкoвo, входящее в состав Заветненскoго сельского совета, районный центр – Ленинo. В состав заповедника входят участки суши в районе мыса Опук, гoра Опук, лагунные озеро Кояшское глубиной 0,6 метров и прилегающая акватория Чёрного моря, которые в совокупности имеют большое природоохранное значение. На территории заповедника, на границе суши и моря, своеобразные климатические факторы способствовали формированию и сохранению уникальных флористического, фаунистического и ландшафтного комплексов, не имеющих аналогов не только в Крыму, но и в Европе. На территории заповедника и его окрестностей сохранилось около 198 историко-культурных объектов, десятки древних колодцев и другие памятники.\r\n\r\nЧем заняться? \r\n\r\nУвидеть вблизи Кояшское озеро, подняться на гору Приозёрная — обитель редких и эндемичных растений, полюбоваться уникальными степными птицами на перламутровой ракушечно-песчаной косе у самого Чёрного моря, посетить руины древнего города Киммерик и таинственные катакомбы.",
+    "slug": "opukskij-prirodnyj-zapovednik"
+  }
+},
+{
+  "model": "sitetour.locationphoto",
+  "pk": 1,
+  "fields": {
+    "location": 3,
+    "photo": "locations/1388091874_priroda_opykskogo_zapovednika_C1ZRKie.jpeg"
+  }
+},
+{
+  "model": "sitetour.locationphoto",
+  "pk": 2,
+  "fields": {
+    "location": 2,
+    "photo": "locations/cape-tarkhankut_IGKisl7.jpg"
+  }
+},
+{
+  "model": "sitetour.locationphoto",
+  "pk": 3,
+  "fields": {
+    "location": 1,
+    "photo": "locations/about-2_sHSYYNR.jpg"
+  }
+},
+{
+  "model": "sitetour.locationphoto",
+  "pk": 4,
+  "fields": {
+    "location": 2,
+    "photo": "locations/3_rp5.jpg"
+  }
+},
+{
+  "model": "sitetour.locationphoto",
+  "pk": 5,
+  "fields": {
+    "location": 3,
+    "photo": "locations/814.jpg"
+  }
+},
+{
+  "model": "sitetour.locationphoto",
+  "pk": 6,
+  "fields": {
+    "location": 3,
+    "photo": "locations/unnamed.jpg"
+  }
+},
+{
+  "model": "sitetour.locationphoto",
+  "pk": 7,
+  "fields": {
+    "location": 1,
+    "photo": "locations/3343056.jpg"
+  }
+},
+{
+  "model": "sitetour.category",
+  "pk": 1,
+  "fields": {
+    "name": "Сложная",
+    "description": "Для опытных путешественников, готовых к интенсивным нагрузкам, подъемам и длительным маршрутам. Рекомендуется хорошая физическая подготовка и выносливость.",
+    "slug": "slozhnaja"
+  }
+},
+{
+  "model": "sitetour.category",
+  "pk": 2,
+  "fields": {
+    "name": "Легкая",
+    "description": "Подходит для начинающих и тех, кто предпочитает умеренные физические нагрузки. Идеально для спокойных прогулок и наслаждения природой без необходимости в специальной подготовке.",
+    "slug": "legkaja"
+  }
+},
+{
+  "model": "sitetour.category",
+  "pk": 3,
+  "fields": {
+    "name": "Средняя",
+    "description": "Для тех, кто привык к активности и готов к более длительным прогулкам или легким подъемам. Подразумевает умеренные физические нагрузки и требует базовой выносливости.",
+    "slug": "srednjaja"
+  }
+},
+{
+  "model": "sitetour.tour",
+  "pk": 1,
+  "fields": {
+    "title": "Крымская античность: Херсонес нового времени",
+    "category": 2,
+    "description": "Погрузитесь в атмосферу древнего Крыма с экскурсией в музейно-храмовый комплекс «Новый Херсонес». Этот уникальный тур сочетает в себе историю, архитектуру и духовность. Пройдитесь по улицам древнего города, посетите храмовый комплекс и узнайте тайны древнего Херсонеса. Ощутите дыхание веков и прикоснитесь к культурному наследию, хранящему историю многих поколений.",
+    "duration": 7,
+    "price": 1000.0,
+    "max_participants": 2,
+    "guide_id": 2,
+    "location_id": 1,
+    "start_datetime": "2024-10-21T12:13:41Z",
+    "end_datetime": "2024-10-21T19:13:43Z",
+    "status": "ACT",
+    "slug": "krymskaja-antichnost-hersones-novogo-vremeni"
+  }
+},
+{
+  "model": "sitetour.tour",
+  "pk": 2,
+  "fields": {
+    "title": "Тайны мыса Тарханкут",
+    "category": 3,
+    "description": "Откройте для себя загадочный мир мыса Тарханкут! В этом уникальном туре вы пройдете по тропам, скрытым от глаз обычных туристов, и насладитесь величественными пейзажами крымских берегов. Вас ждут крутые скалы, кристально чистые бухты и возможность увидеть редкие виды морских обитателей. Ощутите свободу на краю земли и вдохните свежий морской воздух – этот тур подарит вам незабываемое чувство единения с природой!",
+    "duration": 18,
+    "price": 5000.0,
+    "max_participants": 8,
+    "guide_id": 3,
+    "location_id": 2,
+    "start_datetime": "2024-10-21T12:14:17Z",
+    "end_datetime": "2024-10-22T06:14:21Z",
+    "status": "ACT",
+    "slug": "tajny-mysa-tarhankut"
+  }
+},
+{
+  "model": "sitetour.tour",
+  "pk": 3,
+  "fields": {
+    "title": "Дикая природа Опукского заповедника",
+    "category": 1,
+    "description": "Приглашаем вас в сказочный Опукский природный заповедник – место, где нетронутая природа и редкие виды растений и животных очаровывают с первого взгляда. Этот тур станет настоящим путешествием в мир дикой природы, где вы сможете увидеть розовое озеро Кояшское и удивительные пейзажи, уходящие за горизонт. Полюбуйтесь природными богатствами Крыма и насладитесь полной гармонией с окружающим миром.",
+    "duration": 3,
+    "price": 999.0,
+    "max_participants": 100,
+    "guide_id": 1,
+    "location_id": 3,
+    "start_datetime": "2024-10-24T14:25:47Z",
+    "end_datetime": "2024-10-24T17:25:50Z",
+    "status": "ACT",
+    "slug": "dikaja-priroda-opukskogo-zapovednika"
+  }
+},
+{
+  "model": "sitetour.booking",
+  "pk": 1,
+  "fields": {
+    "tour_id": 1,
+    "user_id": 1,
+    "participants": 2,
+    "total_price": 2000.0,
+    "status": "PAID",
+    "created_at": "2024-10-21T12:38:16.902Z",
+    "updated_at": "2024-10-26T11:53:13.024Z",
+    "slug": "1-1"
+  }
+},
+{
+  "model": "sitetour.booking",
+  "pk": 2,
+  "fields": {
+    "tour_id": 2,
+    "user_id": 1,
+    "participants": 6,
+    "total_price": 30000.0,
+    "status": "WTPM",
+    "created_at": "2024-10-21T18:24:28.463Z",
+    "updated_at": "2024-10-27T09:16:04.356Z",
+    "slug": "2-1"
+  }
+},
+{
+  "model": "sitetour.booking",
+  "pk": 3,
+  "fields": {
+    "tour_id": 3,
+    "user_id": 1,
+    "participants": 4,
+    "total_price": 3996.0,
+    "status": "WTPM",
+    "created_at": "2024-10-25T09:05:22.993Z",
+    "updated_at": "2024-10-27T09:16:01.582Z",
+    "slug": "3-1"
+  }
+},
+{
+  "model": "sitetour.booking",
+  "pk": 11,
+  "fields": {
+    "tour_id": 3,
+    "user_id": 1,
+    "participants": 4,
+    "total_price": 3996.0,
+    "status": "CANC",
+    "created_at": "2024-10-26T22:26:39.666Z",
+    "updated_at": "2024-10-26T22:28:53.294Z",
+    "slug": "3-1"
+  }
+},
+{
+  "model": "sitetour.booking",
+  "pk": 13,
+  "fields": {
+    "tour_id": 3,
+    "user_id": 1,
+    "participants": 6,
+    "total_price": 5994.0,
+    "status": "WTPM",
+    "created_at": "2024-10-29T16:46:05.437Z",
+    "updated_at": "2024-10-29T16:46:05.437Z",
+    "slug": "3-1"
+  }
+},
+{
+  "model": "sitetour.booking",
+  "pk": 14,
+  "fields": {
+    "tour_id": 3,
+    "user_id": 3,
+    "participants": 2,
+    "total_price": 1998.0,
+    "status": "CANC",
+    "created_at": "2024-10-29T18:07:13.622Z",
+    "updated_at": "2024-10-29T18:07:18.322Z",
+    "slug": "3-3"
+  }
+},
+{
+  "model": "sitetour.booking",
+  "pk": 15,
+  "fields": {
+    "tour_id": 3,
+    "user_id": 3,
+    "participants": 1,
+    "total_price": 999.0,
+    "status": "WTPM",
+    "created_at": "2024-10-29T18:07:26.666Z",
+    "updated_at": "2024-10-29T18:07:26.666Z",
+    "slug": "3-3"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 1,
+  "fields": {
+    "tour_id": 2,
+    "user_id": 1,
+    "comment": "ОЧ ВКУСНА",
+    "created_at": "2024-10-21T13:28:10.223Z",
+    "slug": "po-restaranam-root"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 2,
+  "fields": {
+    "tour_id": 1,
+    "user_id": 1,
+    "comment": "skdksmdkmsd",
+    "created_at": "2024-10-21T14:05:18.025Z",
+    "slug": "po-krysham-root"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 3,
+  "fields": {
+    "tour_id": 1,
+    "user_id": 1,
+    "comment": "ksmkcdsmk",
+    "created_at": "2024-10-21T14:05:49.324Z",
+    "slug": "po-krysham-root"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 4,
+  "fields": {
+    "tour_id": 2,
+    "user_id": 1,
+    "comment": "kaxm",
+    "created_at": "2024-10-21T14:06:41.396Z",
+    "slug": "po-restaranam-root"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 5,
+  "fields": {
+    "tour_id": 1,
+    "user_id": 1,
+    "comment": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "created_at": "2024-10-21T18:22:39.342Z",
+    "slug": "po-krysham-root"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 6,
+  "fields": {
+    "tour_id": 2,
+    "user_id": 1,
+    "comment": "121212",
+    "created_at": "2024-10-24T12:11:44.854Z",
+    "slug": "2-1"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 7,
+  "fields": {
+    "tour_id": 2,
+    "user_id": 1,
+    "comment": "121212",
+    "created_at": "2024-10-29T18:00:52.520Z",
+    "slug": "2-1"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 8,
+  "fields": {
+    "tour_id": 3,
+    "user_id": 1,
+    "comment": "1212",
+    "created_at": "2024-10-29T18:01:03.942Z",
+    "slug": "3-1"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 9,
+  "fields": {
+    "tour_id": 1,
+    "user_id": 3,
+    "comment": "dhbfhdbfhdbf",
+    "created_at": "2024-10-29T18:01:22.801Z",
+    "slug": "1-3"
+  }
+},
+{
+  "model": "sitetour.review",
+  "pk": 10,
+  "fields": {
+    "tour_id": 1,
+    "user_id": 3,
+    "comment": "hdsfhdbfhdbf",
+    "created_at": "2024-10-29T18:01:33.831Z",
+    "slug": "1-3"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$DQQeikHsShWCYpmAVjsNtt$WyokQ4y5N+jIVl6CZtrsQtIc6HzprsAYwfVwfCtqQeg=",
+    "last_login": "2024-10-29T18:08:44.005Z",
+    "is_superuser": true,
+    "username": "root",
+    "first_name": "Вовандрий",
+    "last_name": "Жоский",
+    "email": "example@mail.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-10-21T12:12:06Z",
+    "phone": "+7-978-798-56-19",
+    "photo": "users/friendly-thug.jpg",
+    "created_at": "2024-10-21T12:12:06.822Z",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$vNnHmv84XRTrbAcobxTUw3$26PX8b/Hk75qYehNkCphOzwKvJbQATI6o6EKCEXHwvo=",
+    "last_login": "2024-10-29T17:26:53.805Z",
+    "is_superuser": false,
+    "username": "wasabi1",
+    "first_name": "wasabi1",
+    "last_name": "wasabi1",
+    "email": "vovasharafutdinov@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-10-26T09:52:15.055Z",
+    "phone": "+7-999-249-63-69",
+    "photo": "users/pDSC_2500_bMMvIEJ.jpg",
+    "created_at": "2024-10-26T09:52:15.285Z",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$crKqicC3hbhjPvInTIxJ43$hd6Dn5ZXNSlGaTVnEX457CW0IkAB4zKyCWz2nzOH8MQ=",
+    "last_login": "2024-10-29T18:06:55.923Z",
+    "is_superuser": false,
+    "username": "superman",
+    "first_name": "Super",
+    "last_name": "Man",
+    "email": "superman@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-10-29T17:01:49.637Z",
+    "phone": "+7-978-798-56-19",
+    "photo": "",
+    "created_at": "2024-10-29T17:01:49.866Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

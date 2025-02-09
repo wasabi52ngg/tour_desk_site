@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mainpart %}
+<div class="contacts-container">
+    <!-- Логотип компании -->
+    <div class="company-logo">
+        <img src="{% static 'img/logo.png' %}" alt="Логотип компании">
+    </div>
+
+    <!-- Заголовок страницы -->
+    <h1>Свяжитесь с нами</h1>
+
+    <!-- Список контактов -->
+    <ul class="contact-list">
+        <li>
+            <img src="{% static 'img/icons/phone.png' %}" alt="Телефон">
+            <a href="tel:+7-999-999-99-99">+7-999-999-99-99</a>
+        </li>
+        <li>
+            <img src="{% static 'img/icons/email.png' %}" alt="Почта">
+            <a href="mailto:wasabitour@mail.com">wasabitour@mail.com</a>
+        </li>
+        <li>
+            <img src="{% static 'img/icons/telegram.png' %}" alt="Телеграм">
+            <a href="https://t.me/wasabitour" target="_blank">@wasabitour</a>
+        </li>
+        <li>
+            <img src="{% static 'img/icons/instagram.png' %}" alt="Инстаграм">
+            <a href="https://instagram.com/wasabitour" target="_blank">@wasabitour</a>
+        </li>
+        <li>
+            <img src="{% static 'img/icons/vk.png' %}" alt="ВКонтакте">
+            <a href="https://vk.com/wasabitour" target="_blank">vk.com/wasabitour</a>
+        </li>
+    </ul>
+     <h1>Мы работаем с 9:00 до 20:00</h1>
+</div>
+{% endblock %}

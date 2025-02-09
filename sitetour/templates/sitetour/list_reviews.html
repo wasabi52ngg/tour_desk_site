@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block mainpart %}
+<div class="reviews-container">
+    <div class="reviews-header">
+        <h1 class="reviews-title">Список отзывов</h1>
+        {% if user.is_authenticated %}
+        <div class="reviews-actions">
+            <a href="{% url 'add_review' %}" class="create-review-button">Создать отзыв</a>
+            <a href="?filter=my_reviews" class="create-review-button">Мои отзывы</a>
+            <a href="{% url 'reviews' %}" class="create-review-button">Все отзывы</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Фильтры -->
+    <div class="reviews-filters">
+        <div class="filter-sort">
+            <button onclick="toggleTourFilter()" class="sort-button tour-filter-button">
+                Тур
+            </button>
+            <button onclick="toggleSort('created_at')" class="sort-button">
+                Дата <span id="sort-date-arrow">{% if sort_by == 'created_at' %}{% if sort_direction == 'asc' %}↑{% else %}↓{% endif %}{% else %}↓{% endif %}</span>
+            </button>
+            <button onclick="toggleSort('rating')" class="sort-button">
+                Оценка <span id="sort-rating-arrow">{% if sort_by == 'rating' %}{% if sort_direction == 'asc' %}↑{% else %}↓{% endif %}{% else %}↓{% endif %}</span>
+            </button>
+        </div>
+
+        <!-- Чекбоксы для выбора туров -->
+        <div id="tour-dropdown" class="tour-dropdown" style="display: none;">
+            <div class="dropdown-header">
+                <span class="close-dropdown" onclick="closeDropdown()">&times;</span>
+            </div>
+            <form id="tours-filter-form" onchange="applyFilters()" class="tours-filter-form">
+                {% for tour in tours %}
+                <div class="checkbox">
+                    <input class="checkbox-input" type="checkbox" id="tour-{{ tour.pk }}" name="tours" value="{{ tour.pk }}"
+                           {% if tour.pk|slugify in selected_tours|slugify %}checked{% endif %}>
+                    <label class="checkbox-label" for="tour-{{ tour.pk }}">{{ tour.title }}</label>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+
+    <!-- Список отзывов -->
+    {% if reviews %}
+    <ul class="reviews-list">
+        {% for review in reviews %}
+        <li class="review-item">
+            <h2>{{ review.tour_id.title }}</h2>
+            <p><strong>Тур:</strong> <a href="{{ review.tour_id.get_absolute_url }}">{{ review.tour_id.title }}</a></p>
+            <p><strong>Пользователь:</strong> {{ review.user_id.username }}</p>
+            <p><strong>Комментарий:</strong> {{ review.comment }}</p>
+            <p><strong>Дата создания:</strong> {{ review.created_at|date:"d.m.Y H:i" }}</p>
+            <div class="rating-stars">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= review.rating %}
+                        <span class="star filled">&#9733;</span>
+                    {% else %}
+                        <span class="star empty">&#9734;</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Простите, но на этот тур еще нет отзывов.</p>
+    {% endif %}
+    {% include 'sitetour/includes/navigation_paginator.html' %}
+</div>
+
+<!-- JavaScript для обработки фильтров и сортировки -->
+<script>
+// Переключение видимости чекбоксов туров
+function toggleTourFilter() {
+    const dropdown = document.getElementById('tour-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Закрытие выпадающего окна
+function closeDropdown() {
+    const dropdown = document.getElementById('tour-dropdown');
+    dropdown.style.display = 'none';
+}
+
+// Обработка сортировки
+function toggleSort(field) {
+    const currentSort = new URLSearchParams(window.location.search).get('sort_by') || 'created_at';
+    const currentDirection = new URLSearchParams(window.location.search).get('sort_direction') || 'desc';
+    let newDirection = currentSort === field && currentDirection === 'desc' ? 'asc' : 'desc';
+
+    const params = new URLSearchParams(window.location.search);
+    params.set('sort_by', field);
+    params.set('sort_direction', newDirection);
+
+    window.location.search = params.toString();
+}
+
+// Применение фильтра по турам
+function applyFilters() {
+    const selectedTours = Array.from(document.querySelectorAll('#tours-filter-form input[type="checkbox"]:checked'))
+        .map(checkbox => checkbox.value);
+    const params = new URLSearchParams(window.location.search);
+    if (selectedTours.length > 0) {
+        params.set('tours', selectedTours.join(','));
+    } else {
+        params.delete('tours');
+    }
+    window.location.search = params.toString();
+}
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<h1> Добавление тура </h1>
+{% include 'sitetour/includes/employee_sidebar.html' %}
+
+<form action="" method="post">
+	{% csrf_token %}
+	<div class="form-error">{{form.non_field_errors}}</div>
+	{% for field in form %}
+	<p><label class="form-label" for="{{field.id_for_label}}">{{field.label}}</label>{{field}}</p>
+	    <div>
+	        {{ field.errors}}
+	    </div>
+	{% endfor%}
+    <p><button type="submit">Отправить</button></p>
+</form>
+ <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr('.datetime-picker', {
+            enableTime: true, // Включает выбор времени
+            dateFormat: "Y-m-d H:i", // Формат даты и времени
+            time_24hr: true, // 24-часовой формат
+            minDate: "today", // Минимальная дата - сегодня
+        });
+    });
+</script>
+
+{% endblock %}
