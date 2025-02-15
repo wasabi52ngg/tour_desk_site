@@ -92,13 +92,14 @@ DB_PORT=int(os.getenv('DB_PORT'))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'PG_DATABASE',
-        'USER': 'PG_USER',
-        'PASSWORD': 'PG_PASSWORD',
-        'HOST': 'DB_HOST',
+        'NAME': PG_DATABASE,
+        'USER': PG_USER,
+        'PASSWORD': PG_PASSWORD,
+        'HOST': DB_HOST,
         'PORT': DB_PORT,
     }
 }
+
 
 CACHES = {
     "default": {
