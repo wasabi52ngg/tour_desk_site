@@ -31,9 +31,8 @@ SECRET_KEY = os.getenv('DEBUG')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = list(os.getenv('ALLOWED_HOSTS'))
-
-# Application definition
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
+print(type(ALLOWED_HOSTS))
 
 INSTALLED_APPS = [
     'django.contrib.admin',
