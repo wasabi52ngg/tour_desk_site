@@ -358,7 +358,7 @@ class ListReviewsView(DataMixin, ListView):
     template_name = 'sitetour/list_reviews.html'
     model = Review
     context_object_name = 'reviews'
-    allow_empty = True  # Разрешаем пустые результаты
+    allow_empty = True
     paginate_by = 4
 
     def get_queryset(self):

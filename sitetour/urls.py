@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.urls import path, include
 from . import views
+from django.views.decorators.cache import cache_page
+from debug_toolbar.toolbar import debug_toolbar_urls
 # def employee_check(user):
 #     return user.groups.filter(name='employees').exists()
 
@@ -9,13 +11,13 @@ urlpatterns = [
     path('detail_tour/<slug:tour_slug>', views.DetailTourView.as_view(), name='detail_tour'),
     path('detail_guide/<slug:guide_slug>', views.DetailGuideView.as_view(), name='detail_guide'),
     path('detail_location/<slug:location_slug>', views.DetailLocationView.as_view(), name='detail_location'),
-    path('tours', views.ListToursView.as_view(), name='tours'),
+    path('tours', cache_page(30) (views.ListToursView.as_view()), name='tours'),
     path('profile', views.AddTourView.as_view(), name='profile'),
     path('contacts', views.ContactsPageView.as_view(), name='contacts'),
-    path('reviews', views.ListReviewsView.as_view(), name='reviews'),
+    path('reviews',cache_page(30)(views.ListReviewsView.as_view()), name='reviews'),
     path('add_review', views.CreateReviewView.as_view(), name='add_review'),
     path('add_booking', views.CreateBookingView.as_view(), name='add_booking'),
-    path('my_bookings', views.ListUserBookingsView.as_view(), name='my_bookings'),
+    path('my_bookings', cache_page(30)(views.ListUserBookingsView.as_view()), name='my_bookings'),
     path('delete_booking/<int:pk>', views.DeleteBookingView.as_view(), name='delete_booking'),
     path('get_free_seats/', views.get_free_seats, name='get_free_seats'),
     path('get_tour_price/', views.get_tour_price, name='get_tour_price'),
@@ -39,4 +41,4 @@ urlpatterns = [
     path('bookings/<int:pk>/confirm/', views.ConfirmBookingView.as_view(), name='confirm_booking'),
     path('bookings/<int:pk>/cancel/', views.CancelBookingView.as_view(), name='cancel_booking'),
     path('bookings_user/<int:pk>/cancel/', views.CancelBookingDefaultUserView.as_view(), name='cancel_booking_user'),
-]
+]  + debug_toolbar_urls()
