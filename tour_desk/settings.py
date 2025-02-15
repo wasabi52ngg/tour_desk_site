@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DEBUG')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = bool(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
 
@@ -88,15 +88,15 @@ PG_DATABASE=os.getenv('PG_DATABASE')
 PG_USER=os.getenv('PG_USER')
 PG_PASSWORD=os.getenv('PG_PASSWORD')
 DB_HOST=os.getenv('DB_HOST')
-DB_PORT=os.getenv('DB_PORT')
+DB_PORT=int(os.getenv('DB_PORT'))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tourdesk_db',
-        'USER': 'tourdesk',
-        'PASSWORD': '103064',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': 'PG_DATABASE',
+        'USER': 'PG_USER',
+        'PASSWORD': 'PG_PASSWORD',
+        'HOST': 'DB_HOST',
+        'PORT': DB_PORT,
     }
 }
 
