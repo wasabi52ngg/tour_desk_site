@@ -247,6 +247,7 @@ class ListToursView(ListView):
         context['notavailable_tours'] = notavailable_tours
         context['filter_form'] = TourFilterForm(self.request.GET)
         context['rating_for_tours'] = rating_for_tours
+        context['title'] = 'Туры'
         return context
 
     def get_queryset(self):
@@ -407,6 +408,7 @@ class DetailTourView(DataMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context = self.get_mixin_context(context, title="Информация о туре")
+        context['available'] = context['tour'] in get_available_tours()
         return context
 
 
@@ -603,3 +605,12 @@ class CancelBookingDefaultUserView(View):
         booking.status = 'CANC'
         booking.save()
         return redirect(reverse('my_bookings'))
+
+def get_available_tours():
+    available_tours = []
+    for tour in Tour.objects.all():
+        free_seats = Booking.get_free_seats(tour.id)
+        if free_seats > 0:
+            available_tours.append(tour)
+    return available_tours
+

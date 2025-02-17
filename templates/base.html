@@ -9,11 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     {% if static_root %}
     <link type='text/css' rel="stylesheet" href="{% static static_root %}">
     {% else %}
         <link type='text/css' rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endif %}
+    <link type='text/css' rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     {% if static_js_root %}
     {% for js_root in static_js_root %}
@@ -25,25 +28,59 @@
 </head>
 <body>
 
-   {% block mainmenu %}
-    <div class="header">
-        <!-- Логотип слева -->
-        <div class="logo">
-            <a href="{% url 'home' %}">
-                <div class="logo"></div>
-            </a>
-        </div>
+{% block mainmenu %}
+<div class="header">
+    <!-- Логотип слева -->
+    <div class="logo">
+        <a href="{% url 'home' %}">
+            <div class="logo"></div>
+        </a>
+    </div>
 
-        <!-- Меню посередине -->
-        <ul id="mainmenu" class="mainmenu">
-            {% get_menu as menu%}
+    <!-- Бургер-меню для мобильных устройств -->
+    <button class="burger-menu" aria-label="Открыть меню">
+        <span></span>
+    </button>
+
+    <!-- Меню посередине -->
+    <ul id="mainmenu" class="mainmenu">
+        {% get_menu as menu %}
+        {% for m in menu %}
+        {% if user|in_group:"employees" %}
+        <li class="{% if selected == m.url_name %}selected{% endif %}">
+            <a href="{% url m.url_name %}">{{ m.title }}</a>
+        </li>
+        {% else %}
+        {% if m.title != 'Панель сотрудника' %}
+        <li class="{% if selected == m.url_name %}selected{% endif %}">
+            <a href="{% url m.url_name %}">{{ m.title }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+    <!-- Поля для входа и регистрации справа -->
+    <div class="auth-links">
+        {% if user.is_authenticated %}
+            <a href="{% url 'users:profile' %}" class="{% if selected == profile %}selected{% endif %}">Профиль</a>
+        &nbsp;&nbsp;|<a href="{% url 'users:logout' %}">Выйти</a>
+        {% else %}
+            <a href="{% url 'users:login' %}">Вход  </a><a>  |</a>
+            <a href="{% url 'users:register' %}">Регистрация</a>
+        {% endif %}
+    </div>
+    <div class="clear"></div>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <ul>
+            {% get_menu as menu %}
             {% for m in menu %}
-
             {% if user|in_group:"employees" %}
             <li class="{% if selected == m.url_name %}selected{% endif %}">
                 <a href="{% url m.url_name %}">{{ m.title }}</a>
             </li>
-
             {% else %}
             {% if m.title != 'Панель сотрудника' %}
             <li class="{% if selected == m.url_name %}selected{% endif %}">
@@ -51,21 +88,19 @@
             </li>
             {% endif %}
             {% endif %}
-
             {% endfor %}
-        </ul>
-
-        <!-- Поля для входа и регистрации справа -->
-        <div class="auth-links">
+            <!-- Добавляем ссылки на авторизацию/регистрацию -->
             {% if user.is_authenticated %}
-                <a href="{% url 'users:profile' %}">Профиль</a>&nbsp;&nbsp;|<a href="{% url 'users:logout' %}">Выйти</a>
+                <li class="{% if selected == 'profile' %}selected{% endif %}">
+                    <a href="{% url 'users:profile' %}">Профиль</a></li>
+                <li><a href="{% url 'users:logout' %}">Выйти</a></li>
             {% else %}
-                <a href="{% url 'users:login' %}">Вход  </a><a>  |</a>
-                <a href="{% url 'users:register' %}">Регистрация</a>
+                <li><a href="{% url 'users:login' %}">Вход</a></li>
+                <li><a href="{% url 'users:register' %}">Регистрация</a></li>
             {% endif %}
-        </div>
-        <div class="clear"></div>
+        </ul>
     </div>
+</div>
 {% endblock mainmenu %}
 
 
@@ -77,3 +112,23 @@
 
 </body>
 </html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const burgerMenu = document.querySelector(".burger-menu");
+    const header = document.querySelector(".header");
+
+    // Переключение состояния активности
+    burgerMenu.addEventListener("click", function () {
+        console.log("Бургер-меню нажато"); // Отладочная информация
+        header.classList.toggle("active"); // Добавляем/удаляем класс "active"
+    });
+
+    // Закрытие меню при клике вне его области
+    document.addEventListener("click", function (event) {
+        if (!header.contains(event.target) && header.classList.contains("active")) {
+            console.log("Клик вне меню"); // Отладочная информация
+            header.classList.remove("active"); // Убираем класс "active" при клике вне меню
+        }
+    });
+});
+</script>

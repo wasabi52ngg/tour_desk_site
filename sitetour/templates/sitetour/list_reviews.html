@@ -62,6 +62,9 @@
                     {% endif %}
                 {% endfor %}
             </div>
+            {% if review.user_id == request.usnmer.pk %}
+            <a href="{% url 'add_review' %}" class="create-review-button">Исправить отзыв</a>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>

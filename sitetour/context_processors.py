@@ -16,5 +16,7 @@ def selected_menu_item(request):
         selected = 'contacts'
     elif current_url_name == '/reviews':
         selected = 'reviews'
+    elif current_url_name == '/users/profile':
+        selected = 'profile'
 
     return {'selected': selected}

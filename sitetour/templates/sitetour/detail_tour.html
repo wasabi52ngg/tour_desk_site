@@ -64,7 +64,7 @@
             </table>
         </div>
         <div class="detail-tour-actions">
-            {% if tour.id in notavailable_tours %}
+            {% if not available %}
                 <p class="detail-tour-status">СВОБОДНЫХ МЕСТ НА ТУР БОЛЬШЕ НЕТ!</p>
             {% else %}
                 <a href="{% url 'add_booking' %}?tour_id={{ tour.id }}">
