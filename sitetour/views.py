@@ -11,7 +11,8 @@ from django.views.generic import TemplateView, CreateView, ListView, DetailView,
 
 from .models import Tour, Guide, Location, Review, Booking
 from .forms import TourForm, ReviewForm, BookingForm, GuideForm, LocationForm, LocationPhotoFormSet, TourDeleteForm, \
-    LocationDeleteForm, GuideDeleteForm, UpdateTourForm, UpdateLocationForm, UpdateGuideForm, TourFilterForm
+    LocationDeleteForm, GuideDeleteForm, UpdateTourForm, UpdateLocationForm, UpdateGuideForm, TourFilterForm, \
+    UpdateReviewForm
 from .utils import DataMixin
 
 
@@ -518,6 +519,27 @@ class UpdateLocationView(EmployeeRequiredMixin,LoginRequiredMixin, UpdateView):
             location = get_object_or_404(Location, id=location_id)
             form.instance = location
         return super().form_valid(form)
+
+
+class UpdateReviewView(LoginRequiredMixin, UpdateView):
+    model = Review
+    form_class = UpdateReviewForm
+    template_name = 'sitetour/update_review.html'
+    context_object_name = 'review'
+
+    def get_success_url(self):
+        return reverse_lazy('reviews')
+
+    def get_queryset(self):
+        return Review.objects.filter(user_id=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'title': 'Редактирование отзыва',
+            'static_root': 'css/base.css'
+        })
+        return context
 
 
 class DeleteTourView(EmployeeRequiredMixin,LoginRequiredMixin, DeleteView):

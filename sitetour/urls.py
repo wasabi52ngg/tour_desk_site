@@ -16,6 +16,7 @@ urlpatterns = [
     path('contacts', views.ContactsPageView.as_view(), name='contacts'),
     path('reviews',cache_page(30)(views.ListReviewsView.as_view()), name='reviews'),
     path('add_review', views.CreateReviewView.as_view(), name='add_review'),
+    path('update_review/<int:pk>', views.UpdateReviewView.as_view(), name='update_review'),
     path('add_booking', views.CreateBookingView.as_view(), name='add_booking'),
     path('my_bookings', views.ListUserBookingsView.as_view(), name='my_bookings'),
     path('delete_booking/<int:pk>', views.DeleteBookingView.as_view(), name='delete_booking'),

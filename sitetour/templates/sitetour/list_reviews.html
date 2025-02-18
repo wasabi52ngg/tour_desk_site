@@ -62,8 +62,8 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            {% if review.user_id == request.usnmer.pk %}
-            <a href="{% url 'add_review' %}" class="create-review-button">Исправить отзыв</a>
+            {% if review.user_id == request.user %}
+            <a href="{% url 'update_review' review.pk %}" class="update-review-button">Исправить отзыв</a>
             {% endif %}
         </li>
         {% endfor %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainpart %}
+<div class="container">
+    <form action="" method="post" class="add-review-form">
+        <input type="hidden" name="csrfmiddlewaretoken" value="izbuMAYUF7VEX0tpImJUMFRXKY5zvmx1KD5LUAESrxHJpMbiH7goAu6QoxsOE60S">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            <h3 class="add-review-title">Редактирование отзыва</h3>
+            <div class="add-review-error"></div>
+
+            <!-- Исправленное поле рейтинга -->
+            <div class="add-review-group">
+                <label class="add-review-label">Оценка</label>
+                <div class="add-review-rating">
+                    {% for choice in form.rating %}
+                    <label class="add-review-star-label">
+                        {{ choice.tag }}
+                        <span class="add-review-star {% if choice.choice_value <= form.rating.value %}filled{% endif %}">&#9733;</span>
+                    </label>
+                    {% endfor %}
+                </div>
+                <div class="add-review-error"></div>
+            </div>
+
+            <!-- Поле комментария -->
+            <div class="add-review-group">
+                <label class="add-review-label" for="id_comment">
+                    Комментарий (Ограничение на 1000 символов)
+                </label>
+                <textarea name="comment" cols="40" rows="5" maxlength="1000" placeholder="Оставьте ваш комментарий..." required id="id_comment">
+Пришлось драться с греками за вино, проиграл(</textarea>
+                <div class="add-review-error"></div>
+            </div>
+
+            <input type="submit" value="Сохранить изменения" class="add-review-submit-button">
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Инициализация звезд по текущему значению
+                const currentRating = {{ form.rating.value|default:0 }};
+                const stars = document.querySelectorAll('.add-review-star-label');
+
+                stars.forEach((star, index) => {
+                    // Инициализация цвета звезд
+                    if (index < currentRating) {
+                        star.querySelector('.add-review-star').classList.add('filled');
+                    }
+
+                    // Обработчик клика
+                    star.addEventListener('click', function() {
+                        stars.forEach((s, i) => {
+                            const starElement = s.querySelector('.add-review-star');
+                            starElement.classList.toggle('filled', i <= index);
+                        });
+                    });
+                });
+            });
+        </script>
+    </form>
+</div>
+{% endblock %}

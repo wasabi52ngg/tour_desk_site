@@ -1,4 +1,5 @@
 /* Хедер с логотипом, меню и авторизацией */
+/* Фиксированный хедер */
 .header {
     background: #0c1e35;
     height: 60px;
@@ -6,11 +7,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    position: relative;
-    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%; /* Занимаем всю ширину экрана */
+    z-index: 1000; /* Выше остальных элементов */
 }
-
-
 
 /* Логотип слева */
 .logo {
@@ -210,5 +211,28 @@ ul.mainmenu a.selected {
     .header.active .mobile-menu {
         display: flex; /* Показываем мобильное меню */
     }
+}
+
+.main-part {
+    margin-top: 60px;
+    min-height: calc(100% - 60px - 58px); /* 100% минус margin-top и высота футера */
+    box-sizing: border-box; /* Учитываем padding в общей высоте */
+    padding-bottom: 60px;
+}
+
+footer {
+    background: #0c1e35;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 1001;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin:auto;
+	clear:both;
+	margin-bottom: 0px;
+	position: fixed;
+	height: 60px;
 }
 

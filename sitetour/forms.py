@@ -143,6 +143,37 @@ class CategoryForm(forms.ModelForm):
         exclude = ['slug']
 
 
+class UpdateReviewForm(forms.ModelForm):
+    RATING_CHOICES = [
+        (1, '1 звезда'),
+        (2, '2 звезды'),
+        (3, '3 звезды'),
+        (4, '4 звезды'),
+        (5, '5 звезд'),
+    ]
+
+    rating = forms.ChoiceField(
+        choices=RATING_CHOICES,
+        widget=forms.RadioSelect(attrs={'class': 'hidden-radio'}),
+        label='Оценка'
+    )
+
+    class Meta:
+        model = Review
+        fields = ['rating', 'comment']
+        widgets = {
+            'rating': forms.RadioSelect(attrs={'class': 'hidden-radio'}),
+            'comment': forms.Textarea(attrs={
+                'rows': 5,
+                'maxlength': 1000,
+                'placeholder': 'Оставьте ваш комментарий...'
+            }),
+        }
+        labels = {
+            'rating': 'Оценка',
+            'comment': 'Комментарий'
+        }
+
 class ReviewForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
