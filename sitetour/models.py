@@ -45,7 +45,7 @@ class Guide(models.Model):
 
 class Location(models.Model):
     name = models.CharField(verbose_name='Название', max_length=100, null=False, blank=False,
-                            unique=True, db_index=True,
+                             db_index=True,
                             validators=[MinLengthValidator(2, message='Минимум 2 символа')])
     address = models.CharField(verbose_name='Адрес', max_length=150, null=True, blank=True,
                                validators=[MinLengthValidator(2, message='Минимум 2 символа')])
