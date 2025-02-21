@@ -433,7 +433,7 @@ class DetailLocationView(DataMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context = self.get_mixin_context(context, title="Информация о локации")
+        context = self.get_mixin_context(context, title="Информация о локации",static_js_root=('sitetour/js/map.js',))
         return context
 
 
@@ -533,15 +533,15 @@ class ManageLocationPhotosView(EmployeeRequiredMixin, LoginRequiredMixin, View):
             return LocationPhotoFormSet(queryset=LocationPhoto.objects.none())
 
     def get(self, request):
-        location_form = LocationForm()
         location_id = request.GET.get('location_choice')
         location = None
-
         if location_id:
             try:
                 location = Location.objects.get(pk=location_id)
             except Location.DoesNotExist:
                 pass
+
+        location_form = LocationForm(initial={'location_choice': location_id})
 
         formset = self.get_formset(location)
         return render(request, self.template_name, {
@@ -553,17 +553,16 @@ class ManageLocationPhotosView(EmployeeRequiredMixin, LoginRequiredMixin, View):
         })
 
     def post(self, request):
-        location_form = LocationForm(request.POST)
+        location_id = request.POST.get('location_choice')
         location = None
 
-        if 'location_choice' in request.POST:
+        if location_id:
             try:
-                location = Location.objects.get(pk=request.POST['location_choice'])
+                location = Location.objects.get(pk=location_id)
             except (Location.DoesNotExist, ValueError):
                 pass
 
-        if location_form.is_valid():
-            location = location_form.cleaned_data['location_choice']
+        location_form = LocationForm(request.POST, initial={'location_choice': location_id})
 
         formset = LocationPhotoFormSet(
             request.POST,
@@ -573,8 +572,9 @@ class ManageLocationPhotosView(EmployeeRequiredMixin, LoginRequiredMixin, View):
         )
 
         if location_form.is_valid() and formset.is_valid():
-            formset.save()
-            return redirect('manage_location_photos')
+            if location:
+                formset.save()
+                return redirect('manage_location_photos')
 
         return render(request, self.template_name, {
             'location_form': location_form,
@@ -583,7 +583,6 @@ class ManageLocationPhotosView(EmployeeRequiredMixin, LoginRequiredMixin, View):
             'static_root': 'sitetour/css/employee_panel.css',
             'static_js_root': ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')
         })
-
 
 class UpdateReviewView(LoginRequiredMixin, UpdateView):
     model = Review
