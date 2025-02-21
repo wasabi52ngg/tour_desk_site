@@ -10,9 +10,9 @@ from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from .models import Tour, Guide, Location, Review, Booking, LocationPhoto
-from .forms import TourForm, ReviewForm, BookingForm, GuideForm, LocationForm, LocationPhotoFormSet, TourDeleteForm, \
+from .forms import TourForm, ReviewForm, BookingForm, GuideForm, PhotoFormSet, TourDeleteForm, \
     LocationDeleteForm, GuideDeleteForm, UpdateTourForm, UpdateLocationForm, UpdateGuideForm, TourFilterForm, \
-    UpdateReviewForm, AddLocationForm, AddLocationPhotoFormSet
+    UpdateReviewForm, AddLocationForm, AddLocationPhotoFormSet, LocationChoiceForm
 from .utils import DataMixin
 
 
@@ -522,67 +522,75 @@ class UpdateLocationView(EmployeeRequiredMixin,LoginRequiredMixin, UpdateView):
 
 
 class ManageLocationPhotosView(EmployeeRequiredMixin, LoginRequiredMixin, View):
-    template_name = 'sitetour/update_location_photo.html'
-
-    # Исправленный метод get_formset
-    def get_formset(self, instance=None):
-        if instance:
-            existing_count = instance.photos.count()
-            return LocationPhotoFormSet(instance=instance)
-        else:
-            return LocationPhotoFormSet(queryset=LocationPhoto.objects.none())
+    def get_formset(self, instance):
+        return PhotoFormSet(
+            instance=instance,
+            queryset=LocationPhoto.objects.filter(location=instance).order_by('id')
+        )
 
     def get(self, request):
-        location_id = request.GET.get('location_choice')
-        location = None
-        if location_id:
-            try:
-                location = Location.objects.get(pk=location_id)
-            except Location.DoesNotExist:
-                pass
+        location_form = LocationChoiceForm(request.GET or None)
+        selected_location = None
+        formset = None
 
-        location_form = LocationForm(initial={'location_choice': location_id})
+        if location_form.is_valid():
+            selected_location = location_form.cleaned_data['location_choice']
+            formset = self.get_formset(selected_location)
 
-        formset = self.get_formset(location)
-        return render(request, self.template_name, {
+        return render(request, 'sitetour/update_location_photo.html', {
             'location_form': location_form,
             'formset': formset,
-            'title': 'Фото локации',
-            'static_root': 'sitetour/css/employee_panel.css',
+            'selected_location': selected_location,
+            'title': 'Редактирование фотографий',
+            'static_root': "sitetour/css/employee_panel.css",
             'static_js_root': ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')
         })
 
     def post(self, request):
-        location_id = request.POST.get('location_choice')
-        location = None
+        location_form = LocationChoiceForm(request.GET or None)
+        selected_location = None
 
-        if location_id:
-            try:
-                location = Location.objects.get(pk=location_id)
-            except (Location.DoesNotExist, ValueError):
-                pass
+        if location_form.is_valid():
+            selected_location = location_form.cleaned_data['location_choice']
 
-        location_form = LocationForm(request.POST, initial={'location_choice': location_id})
+        if not selected_location:
+            return redirect('manage_location_photos')
 
-        formset = LocationPhotoFormSet(
+        formset = self.get_formset(selected_location)
+        formset = PhotoFormSet(
             request.POST,
             request.FILES,
-            instance=location,
-            queryset=location.photos.all() if location else LocationPhoto.objects.none()
+            instance=selected_location,
+            queryset=LocationPhoto.objects.filter(location=selected_location).order_by('id')
         )
 
-        if location_form.is_valid() and formset.is_valid():
-            if location:
-                formset.save()
-                return redirect('manage_location_photos')
+        if formset.is_valid():
+            instances = formset.save(commit=False)
+            # Удаляем фото с отмеченным чекбоксом очистки
+            for form in formset:
+                if form.cleaned_data.get('photo') is False and form.instance.pk:
+                    form.instance.photo.delete()
+                    form.instance.delete()
 
-        return render(request, self.template_name, {
+            for instance in instances:
+                instance.location = selected_location
+                instance.save()
+
+            return redirect(
+                f"{reverse('manage_location_photos')}"
+                f"?location_choice={selected_location.id}"
+            )
+
+        return render(request, 'sitetour/update_location_photo.html', {
             'location_form': location_form,
             'formset': formset,
-            'title': 'Фото локации',
-            'static_root': 'sitetour/css/employee_panel.css',
+            'selected_location': selected_location,
+            'title': 'Редактирование фотографий',
+            'static_root': "sitetour/css/employee_panel.css",
             'static_js_root': ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')
         })
+
+
 
 class UpdateReviewView(LoginRequiredMixin, UpdateView):
     model = Review
