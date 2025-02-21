@@ -10,14 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
         minShowTime: 500
     };
 
+    // Добавляем проверку кликов внутри сайдбара
+    function shouldIgnoreClick(element) {
+        return !!element.closest('#sidebar, .dropdown-toggle');
+    }
+
     function showLoader() {
         if (!isLoading) {
             isLoading = true;
             loadingTimer = setTimeout(() => {
                 loader.style.display = 'flex';
-                setTimeout(() => {
+                requestAnimationFrame(() => {
                     loader.style.opacity = '1';
-                }, 50);
+                });
             }, config.delayBeforeShow);
         }
     }
@@ -33,26 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function simulateLoading(duration = 2000) {
-        showLoader();
-        setTimeout(hideLoader, duration);
-    }
-
-    // Тестовая кнопка
-    const testButton = document.querySelector('.test-loading-button');
-    if(testButton) {
-        testButton.addEventListener('click', () => {
-            simulateLoading(3000);
-        });
-    }
-
-    // Основные обработчики
-    window.addEventListener('beforeunload', showLoader);
-    window.addEventListener('load', () => setTimeout(hideLoader, config.minShowTime));
-
+    // Обновляем обработчик ссылок
     document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if(link.href !== window.location.href) showLoader();
+        link.addEventListener('click', function(e) {
+            if (shouldIgnoreClick(this)) return;
+            if(this.href !== window.location.href) showLoader();
         });
     });
+
+    // Остальной код без изменений...
 });
