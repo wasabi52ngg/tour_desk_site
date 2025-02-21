@@ -2,53 +2,63 @@
 {% block mainpart %}
 <h1>{{ title }}</h1>
 {% include 'sitetour/includes/employee_sidebar.html' %}
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-error">{{ formset.non_form_errors }}</div>
+
+<form method="get">
     <div class="location-selection">
-    <p>
-        <label class="form-label" for="{{ location_form.location_choice.id_for_label }}">
-            {{ location_form.location_choice.label }}
-        </label>
-        {{ location_form.location_choice }}
-        {{ location_form.location_choice.errors }}
-    </p>
-</div>
+        <p>
+            <label class="form-label" for="{{ location_form.location_choice.id_for_label }}">
+                {{ location_form.location_choice.label }}
+            </label>
+            {{ location_form.location_choice }}
+            {{ location_form.location_choice.errors }}
+        </p>
+    </div>
+</form>
+
+{% if selected_location %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="location_choice" value="{{ selected_location.id }}">
     {{ formset.management_form }}
     <div class="photo-formset">
-    {% for form in formset %}
-    <div class="photo-form">
-        <h3>Фотография {{ forloop.counter }}</h3>
-        {% if form.instance.pk and form.instance.photo %}
-        <div class="photo-preview">
-            <img src="{{ form.instance.photo.url }}" alt="Preview" style="max-width: 200px; max-height: 200px;">
-        </div>
-        {% endif %}
-        <div>
-            {{ form.photo.label_tag }} {{ form.photo }}
-            {{ form.photo.errors }}
-        </div>
-        <div>
-            {{ form.DELETE.label_tag }} {{ form.DELETE }}
-            {{ form.DELETE.errors }}
-        </div>
-    </div>
-    {% endfor %}
-    </div>
-    <p><button type="submit">Сохранить</button></p>
-</form>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const locationSelect = document.querySelector('#{{ location_form.location_choice.id_for_label }}');
+        {% for form in formset %}
+        <div class="photo-form">
+            {% if form.instance.pk %}
+                {{ form.id }}
+            {% endif %}
 
-    // Обновляем страницу при изменении выбора локации
-    locationSelect.addEventListener('change', function () {
-        const selectedValue = this.value;
-        if (selectedValue) {
-            const url = new URL(window.location.href);
-            url.searchParams.set('location_choice', selectedValue);
-            window.location.href = url.toString();
-        }
+            <h3>Фотография {{ forloop.counter }}</h3>
+
+            {% if form.instance.photo %}
+            <div class="photo-preview">
+                <img src="{{ form.instance.photo.url }}" alt="Preview" style="max-width: 200px;">
+                <div class="clear-checkbox">
+                    <label>
+                        <input type="checkbox"
+                               name="{{ form.photo.html_name }}-clear"
+                               id="{{ form.photo.id_for_label }}-clear_id">
+                        Удалить текущее фото
+                    </label>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="photo-upload">
+                {{ form.photo }}
+                {{ form.photo.errors }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button type="submit" class="save-button">Сохранить изменения</button>
+</form>
+{% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const locationSelect = document.getElementById('{{ location_form.location_choice.id_for_label }}');
+    locationSelect.addEventListener('change', function() {
+        this.form.submit();
     });
 });
 </script>

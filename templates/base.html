@@ -17,6 +17,7 @@
         <link type='text/css' rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endif %}
     <link type='text/css' rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link type='text/css' rel="stylesheet" href="{% static 'css/loader.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     {% if static_js_root %}
     {% for js_root in static_js_root %}
@@ -24,6 +25,8 @@
     {% endfor %}
     {% endif %}
     <script src="{% static 'sitetour/js/tour_choice.js' %}"></script>
+    <script src="{% static 'sitetour/js/loader.js' %}"></script>
+    <script src="{% static 'sitetour/js/burger_menu.js' %}"></script>
 
 </head>
 <body>
@@ -112,25 +115,20 @@
 <footer>
             <p>Это просто учебный проект, не имеющий ничего общего с реальным тур агентством. Все данные являются вымышленными и используются исключительно для демонстрационных целей.</p>
         </footer>
+<div id="loading-overlay" class="loading-overlay">
+  <div class="box">
+    <div class="cat">
+      <div class="cat__body"></div>
+      <div class="cat__body"></div>
+      <div class="cat__tail"></div>
+      <div class="cat__head"></div>
+    </div>
+  </div>
+</div>
+
+<button class="test-loading-button" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000;">
+    Тест загрузки (3 сек)
+</button>
 </body>
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const burgerMenu = document.querySelector(".burger-menu");
-    const header = document.querySelector(".header");
 
-    // Переключение состояния активности
-    burgerMenu.addEventListener("click", function () {
-        console.log("Бургер-меню нажато"); // Отладочная информация
-        header.classList.toggle("active"); // Добавляем/удаляем класс "active"
-    });
-
-    // Закрытие меню при клике вне его области
-    document.addEventListener("click", function (event) {
-        if (!header.contains(event.target) && header.classList.contains("active")) {
-            console.log("Клик вне меню"); // Отладочная информация
-            header.classList.remove("active"); // Убираем класс "active" при клике вне меню
-        }
-    });
-});
-</script>
