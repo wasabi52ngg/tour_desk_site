@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<h1>{{ title }}</h1>
+{% include 'sitetour/includes/employee_sidebar.html' %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-error">{{ formset.non_form_errors }}</div>
+    <div class="location-selection">
+        <p>
+            <label class="form-label" for="{{ location_form.location_choice.id_for_label }}">{{ location_form.location_choice.label }}</label>
+            {{ location_form.location_choice }}
+            {{ location_form.location_choice.errors }}
+        </p>
+    </div>
+    {{ formset.management_form }}
+    <div class="photo-formset">
+        {% for form in formset %}
+        <div class="photo-form">
+            <h3>Фотография {{ forloop.counter }}</h3>
+            {% if form.instance.photo %}
+            <div class="photo-preview">
+                <img src="{{ form.instance.photo.url }}" alt="Preview" style="max-width: 200px; max-height: 200px;">
+            </div>
+            {% endif %}
+            <div>
+                {{ form.photo.label_tag }} {{ form.photo }}
+                {{ form.photo.errors }}
+            </div>
+            <div>
+                {{ form.DELETE.label_tag }} {{ form.DELETE }}
+                {{ form.DELETE.errors }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <p><button type="submit">Сохранить</button></p>
+</form>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const locationSelect = document.querySelector('#{{ location_form.location_choice.id_for_label }}');
+
+    // Обновляем страницу при изменении выбора локации
+    locationSelect.addEventListener('change', function() {
+        const form = document.createElement('form');
+        form.method = 'GET';
+        form.action = window.location.pathname;
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'location_choice';
+        input.value = this.value;
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    });
+});
+</script>
+{% endblock %}

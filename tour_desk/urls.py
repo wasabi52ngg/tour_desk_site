@@ -19,6 +19,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+import sitetour.views
+
+handler404 = sitetour.views.page_not_found_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('sitetour.urls')),

@@ -9,10 +9,10 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from .models import Tour, Guide, Location, Review, Booking
+from .models import Tour, Guide, Location, Review, Booking, LocationPhoto
 from .forms import TourForm, ReviewForm, BookingForm, GuideForm, LocationForm, LocationPhotoFormSet, TourDeleteForm, \
     LocationDeleteForm, GuideDeleteForm, UpdateTourForm, UpdateLocationForm, UpdateGuideForm, TourFilterForm, \
-    UpdateReviewForm
+    UpdateReviewForm, AddLocationForm, AddLocationPhotoFormSet
 from .utils import DataMixin
 
 
@@ -99,16 +99,16 @@ class AddTourView(EmployeeRequiredMixin,LoginRequiredMixin, DataMixin, CreateVie
 
 class AddLocationView(EmployeeRequiredMixin,LoginRequiredMixin, DataMixin, CreateView):
     model = Location
-    form_class = LocationForm
+    form_class = AddLocationForm
     template_name = 'sitetour/add_location.html'
     success_url = reverse_lazy('add_location')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['photo_formset'] = LocationPhotoFormSet(self.request.POST, self.request.FILES)
+            context['photo_formset'] = AddLocationPhotoFormSet(self.request.POST, self.request.FILES)
         else:
-            context['photo_formset'] = LocationPhotoFormSet()
+            context['photo_formset'] = AddLocationPhotoFormSet()
         context = self.get_mixin_context(context, title='Добавление тура',
                                          static_root="sitetour/css/employee_panel.css")
         return context
@@ -521,6 +521,70 @@ class UpdateLocationView(EmployeeRequiredMixin,LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
+class ManageLocationPhotosView(EmployeeRequiredMixin, LoginRequiredMixin, View):
+    template_name = 'sitetour/update_location_photo.html'
+
+    # Исправленный метод get_formset
+    def get_formset(self, instance=None):
+        if instance:
+            existing_count = instance.photos.count()
+            return LocationPhotoFormSet(instance=instance)
+        else:
+            return LocationPhotoFormSet(queryset=LocationPhoto.objects.none())
+
+    def get(self, request):
+        location_form = LocationForm()
+        location_id = request.GET.get('location_choice')
+        location = None
+
+        if location_id:
+            try:
+                location = Location.objects.get(pk=location_id)
+            except Location.DoesNotExist:
+                pass
+
+        formset = self.get_formset(location)
+        return render(request, self.template_name, {
+            'location_form': location_form,
+            'formset': formset,
+            'title': 'Фото локации',
+            'static_root': 'sitetour/css/employee_panel.css',
+            'static_js_root': ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')
+        })
+
+    def post(self, request):
+        location_form = LocationForm(request.POST)
+        location = None
+
+        if 'location_choice' in request.POST:
+            try:
+                location = Location.objects.get(pk=request.POST['location_choice'])
+            except (Location.DoesNotExist, ValueError):
+                pass
+
+        if location_form.is_valid():
+            location = location_form.cleaned_data['location_choice']
+
+        formset = LocationPhotoFormSet(
+            request.POST,
+            request.FILES,
+            instance=location,
+            queryset=location.photos.all() if location else LocationPhoto.objects.none()
+        )
+
+        if location_form.is_valid() and formset.is_valid():
+            formset.save()
+            return redirect('manage_location_photos')
+
+        return render(request, self.template_name, {
+            'location_form': location_form,
+            'formset': formset,
+            'title': 'Фото локации',
+            'static_root': 'sitetour/css/employee_panel.css',
+            'static_js_root': ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')
+        })
+
+
 class UpdateReviewView(LoginRequiredMixin, UpdateView):
     model = Review
     form_class = UpdateReviewForm
@@ -540,6 +604,14 @@ class UpdateReviewView(LoginRequiredMixin, UpdateView):
             'static_root': 'css/base.css'
         })
         return context
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Review, pk=pk, user_id=self.request.user)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class DeleteTourView(EmployeeRequiredMixin,LoginRequiredMixin, DeleteView):
@@ -627,6 +699,10 @@ class CancelBookingDefaultUserView(View):
         booking.status = 'CANC'
         booking.save()
         return redirect(reverse('my_bookings'))
+
+def page_not_found_view(request, exception):
+    return render(request, 'sitetour/404_page.html', status=404)
+
 
 def get_available_tours():
     available_tours = []

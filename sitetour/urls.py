@@ -3,9 +3,11 @@ from django.urls import path, include
 from . import views
 from django.views.decorators.cache import cache_page
 from debug_toolbar.toolbar import debug_toolbar_urls
+
+from .views import ManageLocationPhotosView
+
 # def employee_check(user):
 #     return user.groups.filter(name='employees').exists()
-
 urlpatterns = [
     path('',views.HomePageView.as_view(),name='home'),
     path('detail_tour/<slug:tour_slug>', views.DetailTourView.as_view(), name='detail_tour'),
@@ -14,7 +16,7 @@ urlpatterns = [
     path('tours', cache_page(30) (views.ListToursView.as_view()), name='tours'),
     path('profile', views.AddTourView.as_view(), name='profile'),
     path('contacts', views.ContactsPageView.as_view(), name='contacts'),
-    path('reviews',cache_page(30)(views.ListReviewsView.as_view()), name='reviews'),
+    path('reviews',views.ListReviewsView.as_view(), name='reviews'),
     path('add_review', views.CreateReviewView.as_view(), name='add_review'),
     path('update_review/<int:pk>', views.UpdateReviewView.as_view(), name='update_review'),
     path('add_booking', views.CreateBookingView.as_view(), name='add_booking'),
@@ -32,6 +34,7 @@ urlpatterns = [
     path('employee_panel/delete_tour/<int:pk>', views.DeleteTourView.as_view(), name='delete_tour'),
     path('employee_panel/add_location', views.AddLocationView.as_view(), name='add_location'),
     path('employee_panel/update_location/<int:pk>', views.UpdateLocationView.as_view(), name='update_location'),
+    path('employee_panel/manage-location-photos/', ManageLocationPhotosView.as_view(), name='manage_location_photos'),
     path('employee_panel/delete_location', views.DeleteLocationView.as_view(), name='delete_location'),
     path('employee_panel/add_guide', views.AddGuideView.as_view(), name='add_guide'),
     path('employee_panel/update_guide/<int:pk>', views.UpdateGuideView.as_view(), name='update_guide'),

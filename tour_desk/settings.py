@@ -29,10 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DEBUG')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.getenv('DEBUG'))
-
+DEBUG = True if os.getenv('DEBUG') == 'True' else False
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
-
+ALLOWED_HOSTS.remove("")
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

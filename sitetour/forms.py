@@ -3,7 +3,7 @@ from cProfile import label
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, BaseInlineFormSet
 
 from .models import Tour, Booking, Guide, Location, Category, Review, LocationPhoto
 
@@ -94,7 +94,7 @@ class GuideDeleteForm(forms.Form):
     )
 
 
-class LocationForm(forms.ModelForm):
+class AddLocationForm(forms.ModelForm):
     class Meta:
         model = Location
         exclude = ['slug']
@@ -123,13 +123,58 @@ class LocationDeleteForm(forms.Form):
     )
 
 
+class LocationForm(forms.Form):
+    location_choice = forms.ModelChoiceField(
+        queryset=Location.objects.all(),
+        label='Выберите локацию',
+        empty_label="Выберите локацию",
+        widget=forms.Select(attrs={'class': 'tour-select'}),
+        required=True,
+    )
+
 class LocationPhotoForm(forms.ModelForm):
     class Meta:
         model = LocationPhoto
         fields = ['photo']
+        widgets = {
+            'photo': forms.ClearableFileInput(attrs={'required': False}),
+        }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not self.instance.pk:
+            self.fields['photo'].required = True
+        else:
+            self.fields['photo'].required = False
+
+class BaseLocationPhotoFormSet(BaseInlineFormSet):
+    def clean(self):
+        super().clean()
+        if any(self.errors):
+            return
+
+        count = 0
+        for form in self.forms:
+            if form.cleaned_data.get('DELETE'):
+                continue
+            if (form.instance.pk and form.instance.photo) or form.cleaned_data.get('photo'):
+                count += 1
+
+        if count == 0:
+            raise forms.ValidationError('Добавьте хотя бы одну фотографию.')
 
 LocationPhotoFormSet = inlineformset_factory(
+    Location,
+    LocationPhoto,
+    form=LocationPhotoForm,
+    formset=BaseLocationPhotoFormSet,
+    extra=3,
+    can_delete=True,
+    max_num=3
+)
+
+
+AddLocationPhotoFormSet = inlineformset_factory(
     Location, LocationPhoto,
     form=LocationPhotoForm,
     extra=3,
@@ -151,13 +196,11 @@ class UpdateReviewForm(forms.ModelForm):
         (4, '4 звезды'),
         (5, '5 звезд'),
     ]
-
     rating = forms.ChoiceField(
         choices=RATING_CHOICES,
         widget=forms.RadioSelect(attrs={'class': 'hidden-radio'}),
         label='Оценка'
     )
-
     class Meta:
         model = Review
         fields = ['rating', 'comment']
