@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block mainpart %}
 <div class="reviews-container">
     <div class="reviews-header">
@@ -43,14 +44,26 @@
         </div>
     </div>
 
-    <!-- Список отзывов -->
     {% if reviews %}
     <ul class="reviews-list">
         {% for review in reviews %}
         <li class="review-item">
             <h2>{{ review.tour_id.title }}</h2>
             <p><strong>Тур:</strong> <a href="{{ review.tour_id.get_absolute_url }}">{{ review.tour_id.title }}</a></p>
-            <p><strong>Пользователь:</strong> {{ review.user_id.username }}</p>
+            <div class="user-info">
+                <!-- Аватарка пользователя -->
+                <div class="user-avatar">
+                    {% if review.user_id.photo %}
+                        <img src="{{ review.user_id.photo.url }}" alt="Аватар {{ review.user_id.username }}" class="avatar">
+                    {% else %}
+                        <img src="{% static 'img/default_user.png' %}" alt="Аватар по умолчанию" class="avatar">
+                    {% endif %}
+                </div>
+                <!-- Ник пользователя -->
+                <div class="user-username">
+                    <strong>Пользователь:</strong> {{ review.user_id.username }}
+                </div>
+            </div>
             <p><strong>Комментарий:</strong> {{ review.comment }}</p>
             <p><strong>Дата создания:</strong> {{ review.created_at|date:"d.m.Y H:i" }}</p>
             <div class="rating-stars">
@@ -74,7 +87,6 @@
     {% include 'sitetour/includes/navigation_paginator.html' %}
 </div>
 
-<!-- JavaScript для обработки фильтров и сортировки -->
 <script>
 // Переключение видимости чекбоксов туров
 function toggleTourFilter() {
