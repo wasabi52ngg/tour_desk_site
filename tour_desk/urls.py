@@ -26,5 +26,7 @@ handler404 = sitetour.views.page_not_found_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('sitetour.urls')),
-    path('users/', include('users.urls',namespace='users'))
+    path('users/', include('users.urls',namespace='users')),
+    path('social-auth/', include('social_django.urls',namespace='social'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = urlpatterns + [path('__debug__/', include('debug_toolbar.urls'))] if settings.DEBUG else urlpatterns

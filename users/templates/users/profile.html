@@ -36,7 +36,9 @@
             {% endfor %}
             <button type="submit" class="profile-save-button">Сохранить изменения</button>
         </form>
+        {% if not perms.users.social_auth %}
         <a href="{% url 'users:password-change' %}" class="password-change-link">Сменить пароль</a>
+        {% endif %}
     </div>
 
     <!-- Правая колонка с архивом заказов -->

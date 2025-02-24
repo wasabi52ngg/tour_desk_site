@@ -129,8 +129,18 @@ form {
     background: #5a7ddc;
 }
 
+.social-icons-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+
 .social-icons .icon {
-    display: inline-block;
+    display: inline-flex;
     width: 45px;
     height: 45px;
     background-size: cover;
@@ -138,6 +148,7 @@ form {
     border-radius: 50%;
     margin: 0 8px;
     transition: transform 0.3s ease;
+    border: 2px solid #7494ec;
 }
 
 .social-icons .icon:hover {
@@ -160,6 +171,9 @@ form {
     background-image: url('/static/img/icons/linkedin-logo.jpg');
 }
 
+.social-icons .vk {
+    background-image: url('/static/img/icons/vk.png');
+}
 
 /* Хедер с логотипом, меню и авторизацией */
 .header {

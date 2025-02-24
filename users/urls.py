@@ -9,6 +9,7 @@ app_name = 'users'
 urlpatterns = [
 	path('login/', views.LoginUser.as_view(),name='login'),
     path('logout/',  views.logout_user, name='logout'),
+    path('vk_auth/',views.VkAuthView.as_view(),name='vk_auth'),
     # path('logout/', LogoutView.as_view(),name='logout'),
     # path('login-register/', LoginRegisterView.as_view(),name='login-register'),
     path('register/', views.RegisterUser.as_view(), name='register'),

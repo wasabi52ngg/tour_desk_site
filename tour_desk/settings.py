@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import INTERNAL_IPS
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
 import os
@@ -33,6 +34,17 @@ YANDEX_MAPS_API_KEY=os.getenv('YANDEX_MAPS_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv('DEBUG') == 'True' else False
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
+INTERNAL_IPS = ['127.0.0.1']
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_GITHUB_KEY = os.getenv('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.getenv('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_VK_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email', 'photos']
+SOCIAL_AUTH_VK_OAUTH2_EXTRA_DATA = ['photo_max']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -44,8 +56,9 @@ INSTALLED_APPS = [
     'sitetour',
     'users',
     'django_extensions',
-    'debug_toolbar',
+    'social_django'
 ]
+INSTALLED_APPS = INSTALLED_APPS + ['debug_toolbar'] if DEBUG else INSTALLED_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,8 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+MIDDLEWARE = MIDDLEWARE + ['debug_toolbar.middleware.DebugToolbarMiddleware',] if DEBUG else MIDDLEWARE
 
 ROOT_URLCONF = 'tour_desk.urls'
 
@@ -164,7 +177,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = [
 	'django.contrib.auth.backends.ModelBackend',
 	'users.authentication.EmailAuthBackend',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.vk.VKOAuth2'
 ]
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'users.pipeline.new_users_handler',  # <--- set the path to the function Это наша функция которая будет работать при авторизации
+    'users.pipeline.save_vk_user_data'
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
 
 #Настройка SMTP сервера
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
