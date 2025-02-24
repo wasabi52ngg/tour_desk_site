@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block mainpart%}
+<style>
+    .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        padding: 20px;
+    }
+
+    .auth-wrapper {
+        width: 100%;
+        max-width: 400px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        padding: 40px 30px;
+        transform: translateY(-50px);
+    }
+
+    .vkid-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    @media (max-width: 480px) {
+        .auth-wrapper {
+            padding: 25px 15px;
+            margin: 0 10px;
+        }
+
+        .auth-container {
+            min-height: 70vh;
+        }
+    }
+</style>
+
+<div class="auth-container">
+    <div class="auth-wrapper">
+        <h2 style="text-align: center; margin-bottom: 25px; color: #333;">Вход через ВКонтакте</h2>
+        <div class="vkid-container">
+            <script src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
+            <script type="text/javascript">
+                // Ваш существующий скрипт VKID
+                if ('VKIDSDK' in window) {
+                    const VKID = window.VKIDSDK;
+
+                    VKID.Config.init({
+                        app: 53133034,
+                        redirectUrl: 'https://www.wasabi-tours.ru/',
+                        responseMode: VKID.ConfigResponseMode.Callback,
+                        source: VKID.ConfigSource.LOWCODE,
+                        scope: '',
+                    });
+
+                    const oneTap = new VKID.OneTap();
+
+                    oneTap.render({
+                            container: document.currentScript.parentElement,
+                            showAlternativeLogin: true
+                        })
+                        .on(VKID.WidgetEvents.ERROR, vkidOnError)
+                        .on(VKID.OneTapInternalEvents.LOGIN_SUCCESS, function(payload) {
+                            const code = payload.code;
+                            const deviceId = payload.device_id;
+
+                            VKID.Auth.exchangeCode(code, deviceId)
+                                .then(vkidOnSuccess)
+                                .catch(vkidOnError);
+                        });
+
+                    function vkidOnSuccess(data) {
+                        // Обработка успешной авторизации
+                    }
+
+                    function vkidOnError(error) {
+                        console.error('VKID Error:', error);
+                    }
+                }
+            </script>
+        </div>
+        <p style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9em;">
+            Нажимая кнопку, вы соглашаетесь с
+            <a href="/privacy-policy" style="color: #7494ec;">политикой конфиденциальности</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

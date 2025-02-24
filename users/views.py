@@ -7,7 +7,7 @@ from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordCha
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, TemplateView
 from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -57,6 +57,7 @@ class ProfileUserView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         user = self.request.user
+        context['user'] = user
         context['orders'] = Booking.objects.filter(Q(user_id=user,status=Booking.PAID))
         return context
 
@@ -123,3 +124,11 @@ class LoginRegisterView(View):
             'register_form': register_form,
             'static_root': "users/css/login-register.css",
         })
+
+
+class VkAuthView(TemplateView):
+    template_name = 'users/vk_auth.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['title'] = 'Авторизация ВК'
+        return context

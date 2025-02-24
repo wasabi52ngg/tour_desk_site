@@ -43,8 +43,13 @@
 
         <button type="submit" class="btn">Зарегистрироваться</button>
         <p>или зарегистрируйтесь с помощью социальных платформ</p>
-        <div class="social-icons">
-            <a href="#" title="Войти через GitHub" class="icon github"></a>
+        <div class="social-icons-container">
+            <div class="social-icons">
+                    <a href="{% url 'social:begin' 'github' %}" title="Войти через GitHub" class="icon github"></a>
+            </div>
+            <div class="social-icons">
+                    <a href="{% url 'social:begin' 'vk-oauth2' %}" title="Войти через ВКонтакте" class="icon vk"></a>
+            </div>
         </div>
     </form>
 

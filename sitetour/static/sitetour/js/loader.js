@@ -1,24 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
     const loader = document.getElementById('loading-overlay');
-    if(!loader) return;
+    if (!loader) return;
 
-    let loadingTimer;
+    let showTimer; // Таймер для показа лоадера
     let isLoading = false;
-
     const config = {
-        delayBeforeShow: 300,
-        minShowTime: 500
+        delayBeforeShow: 300, // Задержка перед показом (300ms)
+        minShowTime: 500      // Минимальное время отображения (500ms)
     };
 
-    // Добавляем проверку кликов внутри сайдбара
-    function shouldIgnoreClick(element) {
-        return !!element.closest('#sidebar, .dropdown-toggle');
+    // Элементы для игнорирования
+    const ignoreSelectors = [
+        '#djDebug',
+        '[data-no-loader]',
+        '.dropdown-toggle',
+        '#sidebar'
+    ];
+
+    function shouldTriggerLoader(element) {
+        return !ignoreSelectors.some(selector =>
+            element.closest(selector)
+        ) && (
+            element.tagName === 'A' ||
+            element.closest('button') ||
+            element.closest('form')
+        );
     }
 
     function showLoader() {
         if (!isLoading) {
             isLoading = true;
-            loadingTimer = setTimeout(() => {
+
+            // Запускаем таймер показа с задержкой из config
+            showTimer = setTimeout(() => {
                 loader.style.display = 'flex';
                 requestAnimationFrame(() => {
                     loader.style.opacity = '1';
@@ -29,22 +43,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function hideLoader() {
         if (isLoading) {
-            clearTimeout(loadingTimer);
+            // Отменяем таймер показа если он еще не сработал
+            clearTimeout(showTimer);
+
             isLoading = false;
             loader.style.opacity = '0';
+
+            // Гарантированное время отображения
             setTimeout(() => {
                 loader.style.display = 'none';
-            }, 500);
+            }, config.minShowTime);
         }
     }
 
-    // Обновляем обработчик ссылок
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (shouldIgnoreClick(this)) return;
-            if(this.href !== window.location.href) showLoader();
-        });
+    function handleUserAction(e) {
+        if (shouldTriggerLoader(e.target)) {
+            showLoader();
+        }
+    }
+
+    function handleFinishLoading() {
+        // Вызывается при успешной загрузке
+        hideLoader();
+    }
+
+    // Обработчики событий
+    document.body.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+            handleUserAction(e);
+        }
     });
 
-    // Остальной код без изменений...
+    document.body.addEventListener('submit', handleUserAction);
+
+    window.addEventListener('beforeunload', showLoader);
+    window.addEventListener('load', handleFinishLoading);
+    window.addEventListener('error', handleFinishLoading);
+    window.addEventListener('unhandledrejection', handleFinishLoading);
+
+    // Отмена при переходе по якорю
+    window.addEventListener('hashchange', handleFinishLoading);
 });
