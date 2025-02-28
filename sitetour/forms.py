@@ -2,11 +2,12 @@ from cProfile import label
 
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
-from django.db.models import Q
+from django.db.models import Q, Sum, F
+from django.db.models.functions import Coalesce
 from django.forms import inlineformset_factory, BaseInlineFormSet
 from django.utils.safestring import mark_safe
 
-from .models import Tour, Booking, Guide, Location, Category, Review, LocationPhoto
+from .models import Tour, Booking, Guide, Location, Category, Review, LocationPhoto, TourSession
 
 
 class TourForm(forms.ModelForm):
@@ -58,11 +59,42 @@ class TourDeleteForm(forms.Form):
 
 
 class BookingForm(forms.ModelForm):
-    tour_id = forms.ModelChoiceField(queryset=Tour.objects.all(), label="Тур", empty_label='Выберите тур')
+    session = forms.ModelChoiceField(
+        queryset=TourSession.objects.none(),  # Динамически заполняется
+        label="Дата и время",
+        empty_label="Выберите дату"
+    )
+    participants = forms.IntegerField(
+        min_value=1,
+        label="Количество участников",
+        widget=forms.HiddenInput(),
+    )
+    tour_id = forms.ModelChoiceField(
+        queryset=Tour.objects.all(),
+        label="Тур",
+        empty_label="Выберите тур"
+    )
 
     class Meta:
         model = Booking
-        fields = ['tour_id', 'participants']
+        fields = ['tour_id','session', 'participants']
+        widgets = {
+            'tour_id': forms.Select(attrs={'class': 'form-control'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'tour_id' in self.data:
+            # Фильтруем сессии по выбранному туру
+            self.fields['session'].queryset = TourSession.objects.filter(
+                tour_id=self.data['tour_id'],
+                status=TourSession.ACT
+            ).annotate(
+                free_seats=F('tour__max_participants') - Coalesce(
+                    Sum('bookings__participants', filter=~Q(bookings__status=Booking.CANC)),
+                    0
+                )
+            ).filter(free_seats__gt=0)
 
 
 class GuideForm(forms.ModelForm):

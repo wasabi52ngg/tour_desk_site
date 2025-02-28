@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Review, Booking, Tour, Location, Guide, Category, LocationPhoto
+from .models import Review, Booking, Tour, Location, Guide, Category, LocationPhoto, TourSession
 
 
 # Register your models here.
@@ -16,7 +16,7 @@ class BookingAdmin(admin.ModelAdmin):
 
 @admin.register(Tour)
 class TourAdmin(admin.ModelAdmin):
-    readonly_fields = ['slug','duration']
+    readonly_fields = ['slug']
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -35,3 +35,8 @@ class LocationAdmin(admin.ModelAdmin):
 @admin.register(LocationPhoto)
 class LocationPhotoAdmin(admin.ModelAdmin):
     fields = ['location','photo']
+
+
+@admin.register(TourSession)
+class TourSessionAdmin(admin.ModelAdmin):
+    pass

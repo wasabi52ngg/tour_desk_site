@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+<h1> Предление времени для тура </h1>
+{% include 'sitetour/includes/employee_sidebar.html' %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p><button type="submit">Отправить</button></p>
+</form>
+{% endblock %}

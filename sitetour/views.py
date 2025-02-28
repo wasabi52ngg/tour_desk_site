@@ -1,6 +1,12 @@
+from datetime import datetime, timedelta
+from django.core.cache import cache
+
+from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.db.models import Q
+from django.db.models import Q, Sum, F, ExpressionWrapper, Subquery, OuterRef
+from django.db.models.functions import Coalesce
+from django.forms import IntegerField
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.context_processors import request
@@ -9,7 +15,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from .models import Tour, Guide, Location, Review, Booking, LocationPhoto
+from .models import Tour, Guide, Location, Review, Booking, LocationPhoto, TourSession
 from .forms import TourForm, ReviewForm, BookingForm, GuideForm, PhotoFormSet, TourDeleteForm, \
     LocationDeleteForm, GuideDeleteForm, UpdateTourForm, UpdateLocationForm, UpdateGuideForm, TourFilterForm, \
     UpdateReviewForm, AddLocationForm, AddLocationPhotoFormSet, LocationChoiceForm
@@ -141,53 +147,44 @@ class CreateBookingView(LoginRequiredMixin, DataMixin, CreateView):
     form_class = BookingForm
     template_name = 'sitetour/add_booking.html'
     success_url = reverse_lazy('my_bookings')
+    tour = None
 
-    def get(self, request, *args, **kwargs):
-        # Получаем tour_id из GET-параметров
-        tour_id = request.GET.get('tour_id')
-        if tour_id:
-            # Проверяем, существует ли тур с таким ID
-            tour = get_object_or_404(Tour, id=tour_id)
-            # Проверяем, есть ли свободные места
-            free_seats = Booking.get_free_seats(tour.id)
-            if free_seats <= 0:
-                return HttpResponseRedirect(reverse('tours'))
+    def dispatch(self, request, *args, **kwargs):
+        self.tour = self.get_tour()
+        return super().dispatch(request, *args, **kwargs)
 
-        return super().get(request, *args, **kwargs)
+    def get_tour(self):
+        tour_id = self.request.GET.get('tour_id')
+        return get_object_or_404(Tour, id=tour_id) if tour_id else None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        tour_id = self.request.GET.get('tour_id')
-        available_tours = []
-        for tour in Tour.objects.all():
-            free_seats = Booking.get_free_seats(tour.id)
-            if free_seats > 0:
-                available_tours.append(tour)
-
-        if tour_id:
-            tour = get_object_or_404(Tour, id=tour_id)
-            free_seats = Booking.get_free_seats(tour.id)
-            if free_seats > 0:
-                context['free_seats'] = free_seats
-                context['tour'] = tour
-            else:
-                context['free_seats'] = None
-                context['tour'] = None
-        else:
-            context['free_seats'] = None
-            context['tour'] = None
-
-        context['form'].fields['tour_id'].queryset = Tour.objects.filter(id__in=[tour.id for tour in available_tours])
-
-        if tour_id:
-            context['form'].initial['tour_id'] = tour_id
-
-        context = self.get_mixin_context(context, title='Создание брони')
-        return context
+        context.update({
+            'tour': self.tour,
+            'static_js_root': 'sitetour/js/bookings.js',
+            'title': 'Создание брони',
+            'user': self.request.user
+        })
+        return self.get_mixin_context(context)
 
     def form_valid(self, form):
-        w = form.save(commit=False)
-        w.user_id = self.request.user
+        booking = form.save(commit=False)
+        booking.user_id = self.request.user  #
+        session = form.cleaned_data['session']
+        participants = form.cleaned_data['participants']
+
+        if not session.is_available(participants):
+            form.add_error(None, 'Недостаточно свободных мест')
+            return self.form_invalid(form)
+
+        booking.total_price = participants * session.tour.price
+        booking.save()
+
+        session.refresh_from_db()
+        if session.get_free_seats() <= 0:
+            session.status = TourSession.END
+            session.save(update_fields=['status'])
+
         return super().form_valid(form)
 
 
@@ -206,6 +203,44 @@ def get_tour_price(request):
         return JsonResponse({'price': tour.price})
     return JsonResponse({'price': 0})
 
+
+def get_available_sessions(request):
+    tour_id = request.GET.get('tour_id')
+    date = request.GET.get('date')
+
+    if not tour_id:
+        return JsonResponse({'error': 'Не указан ID тура'}, status=400)
+
+    try:
+        tour = Tour.objects.get(id=tour_id)
+    except Tour.DoesNotExist:
+        return JsonResponse({'error': 'Тур не найден'}, status=404)
+
+    sessions = TourSession.objects.filter(
+        tour=tour,
+        status=TourSession.ACT
+    ).prefetch_related('bookings')
+
+    if date:
+        try:
+            target_date = datetime.fromisoformat(date).date()
+            sessions = sessions.filter(start_datetime__date=target_date)
+        except ValueError:
+            return JsonResponse({'error': 'Неверный формат даты'}, status=400)
+
+    sessions_data = []
+    for session in sessions:
+        free_seats = session.get_free_seats()
+        if free_seats > 0:
+            sessions_data.append({
+                'id': session.id,
+                'start_datetime': session.start_datetime.isoformat(),
+                'free_seats': free_seats,
+                'max_participants': session.tour.max_participants,
+                'price': session.tour.price  # Добавляем цену
+            })
+
+    return JsonResponse({'sessions': sessions_data})
 
 class CreateReviewView(DataMixin, CreateView):
     form_class = ReviewForm
@@ -239,21 +274,18 @@ class ListToursView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        notavailable_tours = []
-        for tour in context['tours']:
-            free_seats = Booking.get_free_seats(tour.id)
-            if free_seats == 0:
-                notavailable_tours.append(tour.id)
-        rating_for_tours = {tour.pk: tour.average_rating() for tour in Tour.objects.all()}
-        context['notavailable_tours'] = notavailable_tours
-        context['filter_form'] = TourFilterForm(self.request.GET)
+
+        rating_for_tours = {tour.pk: tour.average_rating() for tour in context['tours']}
+
         context['rating_for_tours'] = rating_for_tours
+        context['filter_form'] = TourFilterForm(self.request.GET)
         context['title'] = 'Туры'
         return context
 
     def get_queryset(self):
-        queryset = super().get_queryset().filter(status='ACT')
+        queryset = super().get_queryset()
         filter_form = TourFilterForm(self.request.GET)
+
         if filter_form.is_valid():
             category_value = filter_form.cleaned_data.get('category')
             price_values = self.request.GET.getlist('price')
@@ -277,12 +309,13 @@ class ListToursView(ListView):
                 duration_queries = Q()
                 for duration in duration_values:
                     if duration == '1':
-                        duration_queries |= Q(duration__lt=3)
+                        duration_queries |= Q(default_duration_hours__lt=3)
                     elif duration == '2':
-                        duration_queries |= Q(duration__gte=3, duration__lte=6)
+                        duration_queries |= Q(default_duration_hours__gte=3, default_duration_hours__lte=6)
                     elif duration == '3':
-                        duration_queries |= Q(duration__gt=6)
+                        duration_queries |= Q(default_duration_hours__gt=6)
                 queryset = queryset.filter(duration_queries)
+
         return queryset
 
 
@@ -409,7 +442,7 @@ class DetailTourView(DataMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context = self.get_mixin_context(context, title="Информация о туре")
-        context['available'] = context['tour'] in get_available_tours()
+        context['available'] = is_available_tour(context['tour'])
         return context
 
 
@@ -566,7 +599,6 @@ class ManageLocationPhotosView(EmployeeRequiredMixin, LoginRequiredMixin, View):
 
         if formset.is_valid():
             instances = formset.save(commit=False)
-            # Удаляем фото с отмеченным чекбоксом очистки
             for form in formset:
                 if form.cleaned_data.get('photo') is False and form.instance.pk:
                     form.instance.photo.delete()
@@ -711,11 +743,27 @@ def page_not_found_view(request, exception):
     return render(request, 'sitetour/404_page.html', status=404)
 
 
-def get_available_tours():
-    available_tours = []
-    for tour in Tour.objects.all():
-        free_seats = Booking.get_free_seats(tour.id)
-        if free_seats > 0:
-            available_tours.append(tour)
-    return available_tours
+class UpdateTimeTourView(EmployeeRequiredMixin,LoginRequiredMixin,View):
+    template_name = "sitetour/update_time_tour.html"
+    def get(self,request,pk:int):
+        tour = Tour.objects.filter(pk=pk)
+        return render(request,self.template_name,context={'title': 'Продление тура',
+                                                          'static_root': "sitetour/css/employee_panel.css",
+                     'static_js_root': ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')})
+
+    def post(self,request):
+        return render(request, self.template_name, context={'title': 'Продление тура',
+                                                            'static_root': "sitetour/css/employee_panel.css",
+                                                            'static_js_root':
+                                                            ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')})
+
+def is_available_tour(tour):
+    available_sessions = tour.sessions.filter(
+        status=TourSession.ACT
+    ).annotate(
+        booked_seats=Sum('bookings__participants', filter=~Q(bookings__status='CANC'))
+    ).filter(
+        tour__max_participants__gt=F('booked_seats')
+    )
+    return available_sessions.exists()
 

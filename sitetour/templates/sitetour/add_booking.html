@@ -3,43 +3,67 @@
 {% block mainpart %}
 <div class="booking-container">
     <div class="info-message">
-        <h2>Выберите Тур и Число участников</h2>
-        <p>Пожалуйста, выберите тур и укажите количество участников, чтобы продолжить.</p>
+        <h2>Выберите Тур, Дату и Количество Участников</h2>
+        <p>Пожалуйста, выберите тур, дату и укажите количество участников, чтобы продолжить.</p>
     </div>
     <form action="" method="post" id="bookingForm" class="booking-form">
         {% csrf_token %}
         <div class="form-error">{{ form.non_field_errors }}</div>
-        {% for field in form %}
+
+        <!-- Выбор тура -->
         <div class="form-group">
-            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {% if field.name == 'tour_id' %}
-                <span class="free-seats" id="freeSeats">Свободных мест: {% if free_seats is not None %}{{ free_seats }}{% else %}0{% endif %}</span>
-            {% endif %}
+            <label class="form-label" for="{{ form.tour_id.id_for_label }}">{{ form.tour_id.label }}</label>
+            {{ form.tour_id }}
         </div>
-        <div class="field-errors">{{ field.errors }}</div>
-        {% endfor %}
+        <div class="field-errors">{{ form.tour_id.errors }}</div>
+
+        <!-- Блок выбора даты -->
+        <div class="form-group">
+            <button type="button" id="selectDateButton" class="select-date-button">
+                Выбрать дату
+            </button>
+            <div id="dateSelectionInfo" style="display: none;">
+                <p>Выбранная дата: <span id="selectedDate"></span></p>
+                <p>Свободных мест: <span id="freeSeats">0</span></p>
+            </div>
+        </div>
+
+        <!-- Календарь -->
+        <div id="calendarContainer" class="calendar-container" style="display: none;">
+            <div id="calendar"></div>
+        </div>
+
+        <!-- Выбор количества участников -->
+        <div class="form-group" id="participantsGroup">
+            <label class="form-label">Количество участников:</label>
+            <div class="participant-counter">
+                <button type="button" id="decreaseParticipants" class="counter-button">-</button>
+                <span id="participantCount">1</span>
+                <button type="button" id="increaseParticipants" class="counter-button">+</button>
+            </div>
+        </div>
+
+        <!-- Итоговая цена -->
         <div class="form-group">
             <label class="form-label">Итоговая цена:</label>
             <span id="totalPrice" class="total-price">0</span> руб.
         </div>
-        <button type="submit" class="submit-button">Отправить</button>
+
+        <!-- Скрытые поля -->
+        <input type="hidden" name="session" id="selectedSessionId">
+        <input type="hidden" name="participants" id="selectedParticipants" value="1">
+        <input type="hidden" name="tour_id" id="selectedTourId" value="{{ form.tour_id.value|default:'' }}">
+
+        <button type="submit" class="submit-button" id="submitButton" disabled>Забронировать</button>
     </form>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 </div>
-<!-- Передаем URL-адреса в JavaScript -->
+
 <script>
     var urls = {
-        getFreeSeatsUrl: "{% url 'get_free_seats' %}",
-        getTourPriceUrl: "{% url 'get_tour_price' %}"
+        getAvailableSessionsUrl: "{% url 'get_available_sessions' %}"
     };
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
 <script src="{% static 'sitetour/js/booking.js' %}"></script>
 {% endblock %}

@@ -109,14 +109,6 @@
                             <td>Локация</td>
                             <td><a href="{{ tour.location_id.get_absolute_url }}">{{ tour.location_id.name }}</a></td>
                         </tr>
-                        <tr>
-                            <td>Дата и время начала</td>
-                            <td>{{ tour.start_datetime|date:"d.m.Y H:i" }}</td>
-                        </tr>
-                        <tr>
-                            <td>Дата и время окончания</td>
-                            <td>{{ tour.end_datetime|date:"d.m.Y H:i" }}</td>
-                        </tr>
                     </tbody>
                 </table>
                 <div class="list_tours-tour-actions">
