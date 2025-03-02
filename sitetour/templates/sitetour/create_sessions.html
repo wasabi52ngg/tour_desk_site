@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block mainpart %}
+{% include 'sitetour/includes/employee_sidebar.html' %}
+
+<div class="session-creation">
+    <h2>Создание сессий для тура</h2>
+
+    <form method="post" id="sessionForm">
+        {% csrf_token %}
+
+        <div class="form-row">
+            <label for="id_tour">Тур:</label>
+            {{ form.tour }}
+            {{ form.tour.errors }}
+        </div>
+
+        <div class="form-row">
+            <label for="id_time_start">Время начала:</label>
+            {{ form.time_start }}
+            {{ form.time_start.errors }}
+        </div>
+
+        <div class="form-row">
+            <label>Даты проведения:</label>
+            <div id="calendarWrapper"></div>
+            {{ form.dates }}
+            {{ form.dates.errors }}
+        </div>
+
+        <button type="submit" class="submit-btn">Создать сессии</button>
+    </form>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const calendar = document.getElementById('calendarWrapper');
+    const dateInput = document.getElementById('id_dates');
+    let fpInstance = null;
+
+    function getLocalDateString(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    function initCalendar() {
+        fpInstance = flatpickr(calendar, {
+            inline: true,
+            mode: "multiple",
+            locale: "ru",
+            minDate: new Date().fp_incr(1),
+            dateFormat: "Y-m-d",
+            onChange: (dates) => {
+                dateInput.value = dates.map(d => getLocalDateString(d)).join(',');
+            }
+        });
+    }
+
+    initCalendar();
+});
+</script>
+{% endblock %}

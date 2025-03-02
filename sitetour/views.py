@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from django.core.cache import cache
-
+from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -14,11 +14,11 @@ from django.template.defaultfilters import title
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
-
+from django.core.exceptions import ValidationError
 from .models import Tour, Guide, Location, Review, Booking, LocationPhoto, TourSession
 from .forms import TourForm, ReviewForm, BookingForm, GuideForm, PhotoFormSet, TourDeleteForm, \
     LocationDeleteForm, GuideDeleteForm, UpdateTourForm, UpdateLocationForm, UpdateGuideForm, TourFilterForm, \
-    UpdateReviewForm, AddLocationForm, AddLocationPhotoFormSet, LocationChoiceForm
+    UpdateReviewForm, AddLocationForm, AddLocationPhotoFormSet, LocationChoiceForm, TourSessionForm
 from .utils import DataMixin
 
 
@@ -743,19 +743,58 @@ def page_not_found_view(request, exception):
     return render(request, 'sitetour/404_page.html', status=404)
 
 
-class UpdateTimeTourView(EmployeeRequiredMixin,LoginRequiredMixin,View):
-    template_name = "sitetour/update_time_tour.html"
-    def get(self,request,pk:int):
-        tour = Tour.objects.filter(pk=pk)
-        return render(request,self.template_name,context={'title': 'Продление тура',
-                                                          'static_root': "sitetour/css/employee_panel.css",
-                     'static_js_root': ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')})
+class CreateSessionView(EmployeeRequiredMixin, LoginRequiredMixin, CreateView):
+    form_class = TourSessionForm
+    template_name = 'sitetour/create_sessions.html'
+    success_url = reverse_lazy('create_sessions')
 
-    def post(self,request):
-        return render(request, self.template_name, context={'title': 'Продление тура',
-                                                            'static_root': "sitetour/css/employee_panel.css",
-                                                            'static_js_root':
-                                                            ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')})
+    def form_valid(self, form):
+        tour = form.cleaned_data['tour']
+        dates = form.cleaned_data['dates']
+        time_start = form.cleaned_data['time_start']
+        created = 0
+        errors = []
+
+        for date_str in dates:
+            try:
+                # Преобразуем строку даты в объект date
+                date = datetime.strptime(date_str, '%Y-%m-%d').date()
+
+                # Создаем datetime объект с указанным временем
+                naive_start = datetime.combine(date, time_start)
+
+                # Преобразуем в aware datetime с учетом часового пояса
+                start_datetime = timezone.make_aware(naive_start)
+
+                # Рассчитываем время окончания
+                end_datetime = start_datetime + timedelta(hours=tour.duration)
+
+                # Создаем сессию
+                TourSession.objects.create(
+                    tour=tour,
+                    start_datetime=start_datetime,
+                    end_datetime=end_datetime,
+                    status=TourSession.ACT
+                )
+                created += 1
+
+            except Exception as e:
+                errors.append(f"{date_str}: {str(e)}")
+
+        if created:
+            messages.success(self.request, f'Создано {created} сессий')
+        if errors:
+            messages.error(self.request, f'Ошибки: {"; ".join(errors)}')
+
+        return redirect(self.success_url)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['title'] = 'Добавление сессии'
+        context['static_root'] = 'sitetour/css/employee_panel.css'
+        context['static_js_root'] = ('sitetour/js/tour_choice.js', 'sitetour/js/dropdown.js')
+        return context
+
 
 def is_available_tour(tour):
     available_sessions = tour.sessions.filter(

@@ -28,13 +28,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
+    function getLocalDateString(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+    function animateCounter(element) {
+        element.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+        }, 200);
+    }
     // Обработка выбора даты
-     async function handleDateSelect(selectedDate) {
+    async function handleDateSelect(selectedDate) {
         try {
-            const utcDate = selectedDate.toISOString().split('T')[0];
+            const localDateStr = getLocalDateString(selectedDate);
             const response = await fetch(
-                `${urls.getAvailableSessionsUrl}?tour_id=${currentTourId}&date=${utcDate}`
+                `${urls.getAvailableSessionsUrl}?tour_id=${currentTourId}&date=${localDateStr}`
             );
 
             if (!response.ok) throw new Error('Ошибка загрузки сессий');
@@ -59,14 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обновление интерфейса
     function updateUI(date) {
-         const utcDate = new Date(
-            Date.UTC(
-                date.getUTCFullYear(),
-                date.getUTCMonth(),
-                date.getUTCDate()
-            )
-        );
-        document.getElementById('selectedDate').textContent = utcDate.toLocaleDateString('ru-RU', {
+        document.getElementById('selectedDate').textContent = date.toLocaleDateString('ru-RU', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
@@ -147,7 +151,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let current = parseInt(countElement.textContent);
         if (current < maxParticipants) {
             countElement.textContent = current + 1;
-            updatePriceControls(); // Обновляем через единую функцию
+            animateCounter(countElement);
+            updatePriceControls();
         }
     });
 
@@ -155,7 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let current = parseInt(countElement.textContent);
         if (current > 1) {
             countElement.textContent = current - 1;
-            updatePriceControls(); // Обновляем через единую функцию
+            animateCounter(countElement);
+            updatePriceControls();
         }
     });
 
@@ -184,11 +190,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function showError(message) {
         const errorElement = document.createElement('div');
         errorElement.className = 'form-error';
-        errorElement.textContent = message;
+        errorElement.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
 
         const container = document.querySelector('.booking-container');
         container.insertBefore(errorElement, container.firstChild);
 
+        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(() => errorElement.remove(), 5000);
     }
 });

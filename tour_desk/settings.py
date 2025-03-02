@@ -146,12 +146,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
 USE_TZ = True
 
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL для Redis
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Хранение результатов в Redis
+CELERY_TIMEZONE = 'Europe/Moscow'  # Часовой пояс
+CELERY_ENABLE_UTC = False  # Отключаем UTC, чтобы использовать локальное время
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

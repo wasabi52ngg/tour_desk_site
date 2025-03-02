@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+
 * {
     margin: 0;
     padding: 0;
@@ -590,6 +594,8 @@ form p {
     border-radius: 8px;
     color: #e74c3c;
     font-size: 14px;
+    order: 0;
+    justify-content: center;
 }
 
 .form-error:not(:empty) {
@@ -1045,11 +1051,14 @@ container
 
 
 .booking-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
 }
 
 
@@ -1061,6 +1070,10 @@ container
     width: 100%;
     max-width: 600px;
     animation: fadeIn 0.8s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    order: 2;
 }
 
 
@@ -1071,7 +1084,6 @@ container
 
 
 .form-group {
-    margin-bottom: 25px;
     color: #7494ec;
 }
 
@@ -1082,6 +1094,23 @@ container
     font-weight: 600;
     color: #333;
     margin-bottom: 10px;
+}
+
+select#id_tour_id {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        appearance: none;
+        background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 1rem center/16px;
+}
+
+select#id_tour_id:focus {
+    outline: none;
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
 }
 
 
@@ -1113,11 +1142,11 @@ container
     margin-top: 5px;
 }
 
-
 .total-price {
-    font-size: 24px;
-    font-weight: 600;
-    color: #7494ec;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #6c5ce7;
+        margin-left: 0.5rem;
 }
 
 
@@ -1128,25 +1157,57 @@ container
     margin-top: 10px;
 }
 
+.submit-button {
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.submit-button:disabled {
+    background: #b2bec3;
+    cursor: not-allowed;
+}
+
+.submit-button:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+}
+
+
 
 .booking-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
 }
 
 .info-message {
     text-align: center;
-    margin-bottom: 30px;
     padding: 20px;
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Градиентный фон */
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Мягкая тень */
     animation: fadeIn 0.8s ease-in-out;
     width: 100%;
+    order: 1;
 }
 
 .info-message h2 {
@@ -1871,14 +1932,36 @@ container
 }
 
 .select-date-button {
-    transition: all 0.3s ease;
-    padding: 10px 20px;
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #6c5ce7 0%, #a463f2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
 }
 
 .select-date-button:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
 }
 
+
+.participant-counter {
+    display: inline-flex;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 0.5rem;
+    gap: 1rem;
+}
 
 .counter-button {
     width: 35px;
@@ -1905,4 +1988,38 @@ container
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.session-creation {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    margin: 15px 0;
+}
+
+#calendarWrapper {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="time"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#participantCount {
+    min-width: 40px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2d3436;
 }

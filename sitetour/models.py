@@ -185,11 +185,6 @@ class TourSession(models.Model):
             total=Coalesce(Sum('participants'), 0)
         )['total']
 
-    def clean(self):
-        super().clean()
-        if self.start_datetime < timezone.now() + timedelta(hours=2):
-            raise ValidationError("Сессия должна быть запланирована минимум за 2 часа до начала")
-
     def get_available_dates(self):
         now = timezone.now()
         return self.start_datetime.astimezone(timezone.get_current_timezone()).date()
