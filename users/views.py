@@ -11,12 +11,13 @@ from django.views.generic import CreateView, DetailView, UpdateView, TemplateVie
 from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
+import requests
 from sitetour.models import Tour, Booking
 from .forms import RegisterUserForm
 
 from .forms import UserPasswordChangeForm
 from users.forms import RegisterUserForm, LoginUserForm, ProfileUserForm
+from .models import User
 
 
 class LoginUser(LoginView):
@@ -132,3 +133,47 @@ class VkAuthView(TemplateView):
         context = super().get_context_data()
         context['title'] = 'Авторизация ВК'
         return context
+
+
+class VKCallbackView(View):
+    def get(self, request):
+        code = request.GET.get('code')
+
+        # Обмен кода на токен
+        token_url = "https://oauth.vk.com/access_token"
+        params = {
+            'client_id': 'YOUR_VK_APP_ID',
+            'client_secret': 'YOUR_VK_APP_SECRET',
+            'redirect_uri': 'YOUR_CALLBACK_URL',
+            'code': code
+        }
+
+        response = requests.get(token_url, params=params)
+        data = response.json()
+
+        if 'access_token' not in data:
+            return redirect('login')
+
+        # Получение данных пользователя
+        user_info_url = "https://api.vk.com/method/users.get"
+        params = {
+            'access_token': data['access_token'],
+            'v': '5.131',
+            'fields': 'email,first_name,last_name'
+        }
+
+        response = requests.get(user_info_url, params=params)
+        user_data = response.json()['response'][0]
+
+        # Создание/авторизация пользователя
+        user, created = User.objects.get_or_create(
+            username=f"vk_{user_data['id']}",
+            defaults={
+                'email': data.get('email', ''),
+                'first_name': user_data.get('first_name', ''),
+                'last_name': user_data.get('last_name', '')
+            }
+        )
+
+        login(request, user)
+        return redirect('home')

@@ -43,16 +43,17 @@
         <div class="vkid-container">
             <script src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
             <script type="text/javascript">
+                const csrfToken = "{{ csrf_token }}";
                 // Ваш существующий скрипт VKID
                 if ('VKIDSDK' in window) {
                     const VKID = window.VKIDSDK;
 
                     VKID.Config.init({
                         app: 53133034,
-                        redirectUrl: 'https://www.wasabi-tours.ru/',
-                        responseMode: VKID.ConfigResponseMode.Callback,
-                        source: VKID.ConfigSource.LOWCODE,
-                        scope: '',
+                        redirectUrl: 'https://www.wasabi-tours.ru/vk-callback/',  // Ваш callback URL
+                        responseMode: VKID.ConfigResponseMode.Code,
+                        state: '{{ csrf_token }}',  // Для защиты от CSRF
+                        scope: 'email'
                     });
 
                     const oneTap = new VKID.OneTap();
@@ -72,12 +73,27 @@
                         });
 
                     function vkidOnSuccess(data) {
-                        // Обработка успешной авторизации
-                    }
-
-                    function vkidOnError(error) {
-                        console.error('VKID Error:', error);
-                    }
+                    // Отправляем код на сервер
+                    fetch('/vk-callback/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({
+                            code: data.code,
+                            device_id: data.device_id
+                        })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = '/';  // Редирект после успеха
+                        } else {
+                            console.error('Auth error');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
                 }
             </script>
         </div>
