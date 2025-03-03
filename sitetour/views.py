@@ -375,7 +375,7 @@ class ListBookingsPAIDView(EmployeeRequiredMixin,DataMixin, ListView):
 class ListBookingsArchiveView(EmployeeRequiredMixin,LoginRequiredMixin, DataMixin, ListView):
     template_name = 'sitetour/bookings_archive.html'
     model = Tour
-    context_object_name = 'tours'
+    context_object_name = 'sessions'
     allow_empty = True
 
     def get_context_data(self, **kwargs):
@@ -385,7 +385,7 @@ class ListBookingsArchiveView(EmployeeRequiredMixin,LoginRequiredMixin, DataMixi
         return context
 
     def get_queryset(self):
-        query_set = Tour.objects.filter(status='Завершена')
+        query_set = TourSession.objects.filter(status='END')
         return query_set
 
 

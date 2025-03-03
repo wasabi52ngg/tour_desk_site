@@ -2,5 +2,20 @@
 {% block mainpart %}
 <h1> Архив заказов </h1>
 {% include 'sitetour/includes/employee_sidebar.html' %}
-<h1>В разработке</h1>
+<div class="container orders-container">
+    <ul class="orders-list">
+    {% for session in sessions%}
+    <li class="order-item">
+        <div class="order-info">
+            <div class="tour-details">
+                <span class="tour-id"><strong>Тур:</strong><a href="{{ session.tour.get_absolute_url }}}">{{ session.tour }}</a></span>
+                <span class="tour-id"><strong>Дата: </strong>{{ session.start_datetime }}</span>
+                <span class="participants"><strong>Участников:</strong> {{ session.get_total_booking }}</span>
+                <span class="total-price"><strong>Итоговая цена:</strong> {{ session.get_total_price }} руб.</span>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}

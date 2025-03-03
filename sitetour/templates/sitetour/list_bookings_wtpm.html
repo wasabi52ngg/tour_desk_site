@@ -9,7 +9,8 @@
             <li class="order-item">
                 <div class="order-info">
                     <div class="tour-details">
-                        <span class="tour-id"><strong>Тур:</strong><a href="{% url 'detail_tour' booking.tour_id.slug %}">{{ booking.tour_id }}</a></span>
+                        <span class="tour-id"><strong>Тур:</strong><a href="{{ booking.session.tour.get_absolute_url }}">{{ booking.session.tour }}</a></span>
+                        <span class="tour-id"><strong>Дата: </strong>{{ booking.session.start_datetime }}</span>
                         <span class="participants"><strong>Участников:</strong> {{ booking.participants }}</span>
                         <span class="total-price"><strong>Итоговая цена:</strong> {{ booking.total_price }} руб.</span>
                     </div>

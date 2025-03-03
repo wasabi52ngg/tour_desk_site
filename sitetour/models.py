@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.db.models.functions import Coalesce
 from django.utils import timezone
 
@@ -188,6 +188,13 @@ class TourSession(models.Model):
     def get_available_dates(self):
         now = timezone.now()
         return self.start_datetime.astimezone(timezone.get_current_timezone()).date()
+
+    def get_total_booking(self):
+        return self.bookings.aggregate(total=Count('pk'))['total']
+
+    def get_total_price(self):
+        res = self.bookings.aggregate(total=Sum('total_price'))['total']
+        return res if res else 0
 
 
 
