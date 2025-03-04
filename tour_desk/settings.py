@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'sitetour',
     'users',
     'django_extensions',
-    'social_django'
+    'social_django',
+    'django.contrib.sites',
+    'django.contrib.sitemaps'
 ]
 INSTALLED_APPS = INSTALLED_APPS + ['debug_toolbar'] if DEBUG else INSTALLED_APPS
 
@@ -73,6 +75,7 @@ MIDDLEWARE = MIDDLEWARE + ['debug_toolbar.middleware.DebugToolbarMiddleware',] i
 
 ROOT_URLCONF = 'tour_desk.urls'
 
+SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -152,10 +155,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL для Redis
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Хранение результатов в Redis
-CELERY_TIMEZONE = 'Europe/Moscow'  # Часовой пояс
-CELERY_ENABLE_UTC = False  # Отключаем UTC, чтобы использовать локальное время
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_ENABLE_UTC = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
