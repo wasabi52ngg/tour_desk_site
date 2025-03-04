@@ -24,7 +24,7 @@ from .utils import DataMixin
 
 # Create your views here.
 def homeview(request):
-    return render(request, 'sitetour/home.html', context={'title': 'Главная'})
+    return render(request, 'sitetour/home.html', context={'title': 'Wasabi tours Учебный сайт!'})
 
 class EmployeeRequiredMixin(UserPassesTestMixin):
     def test_func(self):
